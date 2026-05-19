@@ -1,0 +1,291 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    padding-top: 65px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ 
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 30px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+ 
+.navbar-logo img {
+    height: 40px;
+}
+ 
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+}
+ 
+.navbar-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+ 
+.navbar-links li a:hover {
+    color: #4a90e2;
+}
+ 
+/* Página */
+.page {
+    width: 100%;
+    max-width: 900px;
+    padding: 30px 20px;
+}
+ 
+/* Cabeçalho */
+.page-header {
+    margin-bottom: 20px;
+}
+ 
+.page-header h1 {
+    font-size: 22px;
+    color: #333;
+}
+ 
+/* Cards */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+ 
+.card h2 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+ 
+/* Formulário */
+.form-group {
+    margin-bottom: 16px;
+    flex: 1;
+}
+ 
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #555;
+}
+ 
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+ 
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+ 
+.form-group textarea {
+    resize: vertical;
+}
+ 
+/* Linha com vários campos */
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+ 
+/* Botão atribuir */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
+}
+ 
+.btn-atribuir {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+ 
+.btn-atribuir:hover {
+    background-color: #357abd;
+}
+ 
+/* Tabela */
+.tabela-tarefas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+ 
+.tabela-tarefas thead tr {
+    background-color: #f7f8fa;
+    border-bottom: 2px solid #ddd;
+}
+ 
+.tabela-tarefas th {
+    padding: 12px 14px;
+    text-align: left;
+    color: #555;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+ 
+.tabela-tarefas tbody tr {
+    border-bottom: 1px solid #eee;
+}
+ 
+.tabela-tarefas tbody tr:last-child {
+    border-bottom: none;
+}
+ 
+.tabela-tarefas td {
+    padding: 12px 14px;
+    color: #444;
+}
+ 
+.tabela-tarefas tbody tr:hover {
+    background-color: #f5f8ff;
+}
+ 
+/* Badges de prioridade */
+.prioridade {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+ 
+.prioridade.alta {
+    background-color: #fdecea;
+    color: #c0392b;
+}
+ 
+.prioridade.media {
+    background-color: #fef6e4;
+    color: #d68910;
+}
+ 
+.prioridade.baixa {
+    background-color: #eafaf1;
+    color: #1e8449;
+}
+ 
+/* Badges de estado */
+.estado {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+ 
+.estado.pendente {
+    background-color: #eaf0fb;
+    color: #2471a3;
+}
+ 
+.estado.em-curso {
+    background-color: #fef6e4;
+    color: #d68910;
+}
+ 
+.estado.concluida {
+    background-color: #eafaf1;
+    color: #1e8449;
+}
+ 
+/* Pseudo-elemento: indicador visual nas linhas com prioridade alta */
+.tabela-tarefas tbody tr:has(.alta)::before {
+    content: "";
+    display: block;
+}
+ 
+.tabela-tarefas td:first-child {
+    position: relative;
+}
+ 
+.tabela-tarefas tr:has(.alta) td:first-child::before {
+    content: "! ";
+    color: #c0392b;
+    font-weight: bold;
+}
+ 
+/* Botão voltar */
+.btn-voltar {
+    display: inline-block;
+    text-decoration: none;
+    color: #4a90e2;
+    font-size: 14px;
+}
+ 
+.btn-voltar:hover {
+    text-decoration: underline;
+}
+ 
+/* Rodapé */
+.rodape {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 30px;
+    font-size: 13px;
+    color: #888;
+}
+ 
+/* Responsividade */
+@media (max-width: 650px) {
+    .form-row {
+        flex-direction: column;
+    }
+ 
+    .tabela-tarefas th,
+    .tabela-tarefas td {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+}
