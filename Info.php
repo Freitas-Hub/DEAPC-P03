@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/info.css">
+    <title>Document</title>
+</head>
+<body>
+ 
+    <!-- Barra de navegação -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="images/logo.png" alt="Logotipo">
+        </div>
+        <ul class="navbar-links">
+            <li><a href="historia.html">História</a></li>
+            <li><a href="socios.html">Sócios</a></li>
+            <li><a href="parcerias.html">Parcerias</a></li>
+            <li><a href="medicos.html">Médicos da Casa</a></li>
+        </ul>
+    </nav>
+ 
+    <div class="page">
+ 
+        <!-- Cabeçalho -->
+        <div class="page-header">
+            <h1>Informações Pessoais</h1>
+        </div>
+ 
+        <!-- Cartão com foto e nome -->
+        <div class="card perfil">
+            <div class="perfil-foto">
+                <img src="images/foto_perfil.jpg" alt="Foto do Utilizador">
+            </div>
+            <div class="perfil-nome">
+                <h2>Nome Completo do Utilizador</h2>
+                <p>Utente</p>
+            </div>
+        </div>
+ 
+        <!-- Informações pessoais -->
+        <div class="card">
+            <h3>Dados Pessoais</h3>
+ 
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Nome Completo</span>
+                    <span class="info-valor">Nome Completo do Utilizador</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Data de Nascimento</span>
+                    <span class="info-valor">01/01/1990</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Género</span>
+                    <span class="info-valor">Masculino</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">NIF</span>
+                    <span class="info-valor">123 456 789</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Número de Telefone</span>
+                    <span class="info-valor">9XX XXX XXX</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Email</span>
+                    <span class="info-valor">utilizador@email.com</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Morada</span>
+                    <span class="info-valor">Rua Exemplo, Nº 1, 2º Esq.</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Localidade</span>
+                    <span class="info-valor">Porto</span>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- Botões de ação -->
+        <div class="acoes">
+            <a href="editar_informacoes.html" class="btn-editar">Editar Informações</a>
+            <a href="main.html" class="btn-voltar">← Voltar ao início</a>
+        </div>
+ 
+    </div>
+ 
+    <!-- Rodapé -->
+    <footer class="rodape">
+        <span>Hospital Saúde</span>
+        <span>hospital@email.com | 351 773 355 11</span>
+    </footer>
+ 
+</body>
+</html>
