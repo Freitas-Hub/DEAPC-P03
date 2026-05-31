@@ -6,7 +6,31 @@
     <link rel="stylesheet" href="styles/main.css">    <title>O NOSSO P03!</title>
 </head>
 <body>
- 
+    <?php
+        require "db.php";
+        session_start();
+        $id_util = $_SESSION["id_util"];
+        $nome = $_SESSION["nome"];
+        $apelido = $_SESSION["apelido"];
+        $tipo = $_SESSION["tipo"];
+        $query = "";
+        if ($tipo == "PC") // é paciente
+        {
+            $query = "SELECT u.nome Medico, c.data Data FROM consultas c 
+            JOIN utilizadores u
+            ON c.
+            where id_paciente = '$id_util'";
+        }
+        else if ($tipo[0] == "M") // é Médico
+        {
+            $query = "SELECT c.id_paciente, c.data FROM consultas c 
+            JOIN utilizadores u 
+            ON c.id_medico = u.id_util
+            WHERE u.nome = '$nome'";
+        }
+
+        $result = $conn->query($query);
+    ?>
     <!-- Barra de navegação -->
     <nav class="navbar">
         <div class="navbar-logo">
@@ -24,7 +48,7 @@
  
         <!-- Cabeçalho de boas-vindas -->
         <div class="boas-vindas">
-            <h1>Bem-vindo, Utilizador</h1> <!-- esta página sera universal a todo o tipo de utilizadores, desde médicos a utentes... -->
+            <h1>Bem-vindo, <?php echo $_SESSION["nome"] . " " . $_SESSION["apelido"]; ?></h1> <!-- esta página sera universal a todo o tipo de utilizadores, desde médicos a utentes... -->
         </div>
  
         <!-- Secção superior: próximas marcações + cartão do utente -->
@@ -39,16 +63,13 @@
                         <td>16:20</td>
                         <td>Consulta de Medicina Geral</td>
                     </tr>
-                    <tr>
-                        <td>- -</td>
-                        <td>- -</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>- -</td>
-                        <td>- -</td>
-                        <td>-</td>
-                    </tr>
+                    <?php 
+                        while ($linha = $result->fetch_assoc()) {
+
+                            echo $linha["data"];
+                            echo "<br>";
+                        }  // função para chamar consultas da vista correta(paciente,médico,etc)
+                    ?>
                 </table>
             </div>
  

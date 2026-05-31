@@ -20,16 +20,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_utente = $_POST["num_utente"];
     $password = $_POST["password"];
 
-    $sql = "SELECT * FROM utilizadores 
+    $sql = "SELECT nome, apelido, id_tipo FROM utilizadores 
         WHERE num_utente = '$num_utente' 
         AND password = '$password'";
 
     $result = $conn->query($sql);
-
+    
     if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $nome = $user["nome"];
+        $id = $user["id_util"]; 
+        $apelido = $user["apelido"];
+        session_start();
+        $_SESSION["num_utente"] = $num_utente;
+        $_SESSION["nome"] = $nome;
+        $_SESSION["apelido"] = $apelido;
+        $_SESSION["id_tipo"] = $tipo;
+        $_SESSION["id_util"] = $id;
         header("Location: main.php");
     } else {
-        echo "Login falhou";
+        $erro = true;
     }
 
 
