@@ -35,7 +35,7 @@
             }
 
             // verificar se existe alguma conta com o mesmo num_utente, nif, cartao_cidadao ou seguranca_social
-            $sql = "INSERT INTO utilizadores (nif, nome, apelido, telefone, num_utente, ncc, seg_social, genero, data_nascimento, password) 
+            $sql = "INSERT INTO utilizadores (nif, nome, apelido, email, telefone, num_utente, ncc, seg_social, genero, data_nascimento, password) 
             VALUES (
             '$nif',
             '$nome',
