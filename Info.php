@@ -113,10 +113,10 @@
             <img src="images/logo.png" alt="Logotipo">
         </div>
         <ul class="navbar-links">
-            <li><a href="historia.html">História</a></li>
-            <li><a href="socios.html">Sócios</a></li>
-            <li><a href="parcerias.html">Parcerias</a></li>
-            <li><a href="medicos.html">Médicos da Casa</a></li>
+            <li><a href="historia.php">História</a></li>
+            <li><a href="socios.php">Sócios</a></li>
+            <li><a href="parcerias.php">Parcerias</a></li>
+            <li><a href="medicos.php">Médicos da Casa</a></li>
         </ul>
     </nav>
  
@@ -168,8 +168,7 @@
  
         <!-- Botões de ação -->
         <div class="acoes">
-            <a href="editar_informacoes.html" class="btn-editar">Editar Informações</a>
-            <a href="main.html" class="btn-voltar">← Voltar ao início</a>
+            <a href="main.php" class="btn-voltar">← Voltar ao início</a>
         </div>
  
     </div>
