@@ -122,20 +122,20 @@
                     <p>CC: 123456789</p>
                 </div>
             </div>
- 
+
         </div>
  
         <!-- Botões de navegação -->
         <div class="secao-botoes">
             <a href="consultas.html" class="btn-nav">Consultas</a>
-            <a href="Info.html" class="btn-nav">Informações Pessoais</a>
-            <a href="historico.html" class="btn-nav">Historial Médico</a>
-            <a href="prescricoes.html" class="btn-nav">Prescrições Médicas</a>
+            <a href="Info.php" class="btn-nav">Informações Pessoais</a>
+            <a href="historico.php" class="btn-nav">Historial Médico</a>
+            <a href="prescricoes.php" class="btn-nav">Prescrições Médicas</a>
             <a href="faturas.html" class="btn-nav">Faturas</a>
         </div>
  
     </div>
- 
+
     <!-- Rodapé -->
     <footer class="rodape">
         <span>Hospital Saúde</span>

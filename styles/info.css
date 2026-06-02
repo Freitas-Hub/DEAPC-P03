@@ -118,9 +118,9 @@ body {
 
 /* Grelha de informações */
 .info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .info-item {
