@@ -7,7 +7,6 @@
     <title>Ver & Marcar Consultas</title>
 </head>
 <body>
- 
     <!-- Barra de navegação -->
     <nav class="navbar">
         <div class="navbar-logo">

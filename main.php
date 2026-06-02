@@ -12,24 +12,40 @@
         $id_util = $_SESSION["id_util"];
         $nome = $_SESSION["nome"];
         $apelido = $_SESSION["apelido"];
-        $tipo = $_SESSION["tipo"];
+        $id_tipo = $_SESSION["id_tipo"];
         $query = "";
-        if ($tipo == "PC") // é paciente
+        if ($id_tipo == "PC") // é paciente
         {
-            $query = "SELECT u.nome Medico, c.data Data FROM consultas c 
-            JOIN utilizadores u
-            ON c.
-            where id_paciente = '$id_util'";
-        }
-        else if ($tipo[0] == "M") // é Médico
-        {
-            $query = "SELECT c.id_paciente, c.data FROM consultas c 
-            JOIN utilizadores u 
+            $query = "SELECT u.nome, u.apelido, t.descricao, c.data
+            FROM consultas c
+            INNER JOIN utilizadores u 
             ON c.id_medico = u.id_util
-            WHERE u.nome = '$nome'";
+            INNER JOIN id_tipo_util t
+            ON u.id_tipo = t.id_tipo
+            WHERE c.id_paciente = '$id_util' 
+            ORDER BY c.data ASC";
         }
+        else if (!empty($id_tipo) && $id_tipo[0] == "M") // é médico
+        {
+            //$query = "SELECT u.nome, u.apelido, c.data
+            //FROM consultas c
+            //INNER JOIN utilizadores u
+            //ON c.id_paciente = u.id_util
+            //WHERE c.id_medico = ?
+            //ORDER BY c.data ASC";
+            $query = "SELECT u.nome, u.apelido, c.data
+            FROM consultas c
+            INNER JOIN utilizadores u ON c.id_paciente = u.id_util
+            WHERE c.id_medico = '$id_util'
+            ORDER BY c.data ASC";
+        }
+        
 
-        $result = $conn->query($query);
+        if ($query != "")
+        {
+            $result = $conn->query($query);
+            echo $conn->error;
+        }
     ?>
     <!-- Barra de navegação -->
     <nav class="navbar">
@@ -64,11 +80,32 @@
                         <td>Consulta de Medicina Geral</td>
                     </tr>
                     <?php 
-                        while ($linha = $result->fetch_assoc()) {
+                        if (isset($result)) {
+                            if ($id_tipo[0] == "M") {
+                                while ($linha = $result->fetch_assoc()) 
+                                {
+                                echo "<tr>";
+                                echo "<td>" . date('d/m', strtotime($linha['data'])) . "</td>";
+                                echo "<td>" . date('H:i', strtotime($linha['data'])) . "</td>";
+                                echo "<td>" . $linha['nome'] . " " . $linha['apelido'] . "</td>";
+                                echo "</tr>";
+                                }
+                            }
+                            else if($id_tipo[0] == "P") {
+                                while ($linha = $result->fetch_assoc()) 
+                                {
+                                    
+                                    echo "<tr>";
+                                    echo "<td>" . date('d/m', strtotime($linha['data'])) . "</td>";
+                                    echo "<td>" . date('H:i', strtotime($linha['data'])) . "</td>";
+                                    echo "<td>" . $linha['descricao'] . " - " . $linha['nome'] . " " . $linha['apelido'] . "</td>";
+                                    echo "</tr>";
 
-                            echo $linha["data"];
-                            echo "<br>";
-                        }  // função para chamar consultas da vista correta(paciente,médico,etc)
+                                }
+                            }
+                                
+                        }
+                        // função para chamar consultas da vista correta(paciente,médico,etc)
                     ?>
                 </table>
             </div>

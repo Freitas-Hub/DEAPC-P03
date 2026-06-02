@@ -20,24 +20,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_utente = $_POST["num_utente"];
     $password = $_POST["password"];
 
-    $sql = "SELECT nome, apelido, id_tipo FROM utilizadores 
+    $sql = "SELECT id_util, nome, apelido, id_tipo FROM utilizadores 
         WHERE num_utente = '$num_utente' 
         AND password = '$password'";
 
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
+        
         $user = $result->fetch_assoc();
+
+        $id_tipo = $user["id_tipo"];
         $nome = $user["nome"];
         $id = $user["id_util"]; 
         $apelido = $user["apelido"];
+        echo "id_tipo: $id_tipo";
+        if ($id_tipo == "ADM") // é administrador   
+        {
+            session_start();
+            registarAcesso($id, $conn);
+            $_SESSION["id_tipo"] = $id_tipo;
+            header("Location: admin.php");
+            exit();
+        }
+
+
+        
+        
         session_start();
+        //registar inicio de sessão e guardar variaveis de sessão
+
+        registarAcesso($id, $conn); //função dentro do db.php para registar o acesso do utilizador
+
         $_SESSION["num_utente"] = $num_utente;
         $_SESSION["nome"] = $nome;
         $_SESSION["apelido"] = $apelido;
-        $_SESSION["id_tipo"] = $tipo;
+        $_SESSION["id_tipo"] = $id_tipo;
         $_SESSION["id_util"] = $id;
+        echo "Login bem-sucedido! Bem-vindo, $nome $apelido. $id_tipo";
         header("Location: main.php");
+        exit();
     } else {
         $erro = true;
     }
@@ -80,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
             <div class="buttons">
                 <button type="submit" class="btn-login">Login</button>
-                <a href="register.html" align="center" class="btn-register">Registar Conta</a>
+                <a href="register.php" align="center" class="btn-register">Registar Conta</a>
 
             </div>
 
