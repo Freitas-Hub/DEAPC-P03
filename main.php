@@ -17,10 +17,10 @@
         if ($id_tipo == "PC") // é paciente
         {
             $query = "SELECT u.nome, u.apelido, t.descricao, c.data
-            FROM consultas c
+            FROM marcacoes c
             INNER JOIN utilizadores u 
             ON c.id_medico = u.id_util
-            INNER JOIN id_tipo_util t
+            INNER JOIN tipo_util t
             ON u.id_tipo = t.id_tipo
             WHERE c.id_paciente = '$id_util' 
             ORDER BY c.data ASC";
@@ -28,13 +28,13 @@
         else if (!empty($id_tipo) && $id_tipo[0] == "M") // é médico
         {
             //$query = "SELECT u.nome, u.apelido, c.data
-            //FROM consultas c
+            //FROM marcacoes c
             //INNER JOIN utilizadores u
             //ON c.id_paciente = u.id_util
             //WHERE c.id_medico = ?
             //ORDER BY c.data ASC";
             $query = "SELECT u.nome, u.apelido, c.data
-            FROM consultas c
+            FROM marcacoes c
             INNER JOIN utilizadores u ON c.id_paciente = u.id_util
             WHERE c.id_medico = '$id_util'
             ORDER BY c.data ASC";
@@ -105,7 +105,7 @@
                             }
                                 
                         }
-                        // função para chamar consultas da vista correta(paciente,médico,etc)
+                        // função para chamar marcacoes da vista correta(paciente,médico,etc)
                     ?>
                 </table>
             </div>
@@ -127,7 +127,7 @@
  
         <!-- Botões de navegação -->
         <div class="secao-botoes">
-            <a href="consultas.php" class="btn-nav">Consultas</a>
+            <a href="marcacoes.php" class="btn-nav">Consultas</a>
             <a href="Info.php" class="btn-nav">Informações Pessoais</a>
             <a href="historico.php" class="btn-nav">Historial Médico</a>
             <a href="prescricoes.php" class="btn-nav">Prescrições Médicas</a>
