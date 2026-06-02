@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/consultas.css">
-    <title>Ver & Marcar Consultas</title>
+    <link rel="stylesheet" href="styles/marcacoes.css">
+    <title>Ver & Marcar Consultas e Exames</title>
 </head>
 <body>
     <!-- Barra de navegação -->
@@ -13,10 +13,10 @@
             <img src="images/logo.png" alt="Logotipo">
         </div>
         <ul class="navbar-links">
-            <li><a href="historia.html">História</a></li>
-            <li><a href="socios.html">Sócios</a></li>
-            <li><a href="parcerias.html">Parcerias</a></li>
-            <li><a href="medicos.html">Médicos da Casa</a></li>
+            <li><a href="historia.php">História</a></li>
+            <li><a href="socios.php">Sócios</a></li>
+            <li><a href="parcerias.php">Parcerias</a></li>
+            <li><a href="medicos.php">Médicos da Casa</a></li>
         </ul>
     </nav>
  
@@ -24,8 +24,8 @@
  
         <!-- Cabeçalho da página -->
         <div class="page-header">
-            <h1>Consultas</h1>
-            <a href="marcar_consulta.html" class="btn-marcar">+ Marcar Consulta</a>
+            <h1>Marcações</h1>
+            <a href="marcar_consulta.php" class="btn-marcar">+ Marcar Consulta</a>
         </div>
  
         <!-- Filtros -->
@@ -76,7 +76,7 @@
         </div>
  
         <!-- Botão voltar -->
-        <a href="main.html" class="btn-voltar">← Voltar ao início</a>
+        <a href="main.php" class="btn-voltar">← Voltar ao início</a>
  
     </div>
  

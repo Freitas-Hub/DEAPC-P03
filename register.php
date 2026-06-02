@@ -19,6 +19,7 @@
             $nome = $_POST["nome"];
             $apelido = $_POST["apelido"];
             $telefone = $_POST["telefone"];
+            $email = $_POST["email"];
             $num_utente = $_POST["num_utente"];
             $cartao_cidadao = $_POST["cartao_cidadao"];
             $seguranca_social = $_POST["seguranca_social"];
@@ -39,6 +40,7 @@
             '$nif',
             '$nome',
             '$apelido',
+            '$email',
             '$telefone',
             '$num_utente',
             '$cartao_cidadao',
@@ -66,10 +68,10 @@
             <img src="images/logo.png" alt="Logotipo">
         </div>
         <ul class="navbar-links">
-            <li><a href="historia.html">História</a></li>
-            <li><a href="socios.html">Sócios</a></li>
-            <li><a href="parcerias.html">Parcerias</a></li>
-            <li><a href="medicos.html">Médicos da Casa</a></li>
+            <li><a href="historia.php">História</a></li>
+            <li><a href="socios.php">Sócios</a></li>
+            <li><a href="parcerias.php">Parcerias</a></li>
+            <li><a href="medicos.php">Médicos da Casa</a></li>
         </ul>
     </nav>
  
@@ -89,6 +91,11 @@
                 <label for="apelido">Apelido</label>
                 <input type="text" id="apelido" name="apelido" placeholder="Último nome">
             </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="tel" id="email" name="email" placeholder="teuemail@gmail.com" maxlength="90">
         </div>
 
         <div class="form-group">
@@ -145,7 +152,7 @@
 
         <div class="buttons">
             <button type="submit" class="btn-registar">Criar Conta</button>
-            <a href="login.html" class="btn-login">Já tenho conta</a>
+            <a href="login.php" class="btn-login">Já tenho conta</a>
         </div>
 
     </form>

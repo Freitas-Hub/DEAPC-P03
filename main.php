@@ -53,10 +53,10 @@
             <img src="images/logo.png" alt="Logotipo">
         </div>
         <ul class="navbar-links">
-            <li><a href="historia.html">História</a></li>
-            <li><a href="socios.html">Sócios</a></li>
-            <li><a href="parcerias.html">Parcerias</a></li>
-            <li><a href="medicos.html">Médicos da Casa</a></li>
+            <li><a href="historia.php">História</a></li>
+            <li><a href="socios.php">Sócios</a></li>
+            <li><a href="parcerias.php">Parcerias</a></li>
+            <li><a href="medicos.php">Médicos da Casa</a></li>
         </ul>
     </nav>
  
@@ -127,11 +127,11 @@
  
         <!-- Botões de navegação -->
         <div class="secao-botoes">
-            <a href="consultas.html" class="btn-nav">Consultas</a>
+            <a href="consultas.php" class="btn-nav">Consultas</a>
             <a href="Info.php" class="btn-nav">Informações Pessoais</a>
             <a href="historico.php" class="btn-nav">Historial Médico</a>
             <a href="prescricoes.php" class="btn-nav">Prescrições Médicas</a>
-            <a href="faturas.html" class="btn-nav">Faturas</a>
+            <a href="faturas.php" class="btn-nav">Faturas</a>
         </div>
  
     </div>
