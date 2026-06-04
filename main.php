@@ -16,28 +16,27 @@
         $query = "";
         if ($id_tipo == "PC") // é paciente
         {
-            $query = "SELECT u.nome, u.apelido, t.descricao, c.data
-            FROM marcacoes c
-            INNER JOIN utilizadores u 
-            ON c.id_medico = u.id_util
-            INNER JOIN tipo_util t
-            ON u.id_tipo = t.id_tipo
-            WHERE c.id_paciente = '$id_util' 
+            $query = "SELECT 
+            u.nome AS nome,
+            u.apelido AS apelido,
+            tu.descricao AS especializacao,
+            c.data AS data
+            FROM consultas c
+            INNER JOIN utilizadores u ON c.id_medico = u.id_util
+            INNER JOIN tipo_util tu ON u.id_tipo = tu.id_tipo
+            WHERE c.id_paciente = $id_util
             ORDER BY c.data ASC";
+
         }
         else if (!empty($id_tipo) && $id_tipo[0] == "M") // é médico
         {
-            //$query = "SELECT u.nome, u.apelido, c.data
-            //FROM marcacoes c
-            //INNER JOIN utilizadores u
-            //ON c.id_paciente = u.id_util
-            //WHERE c.id_medico = ?
-            //ORDER BY c.data ASC";
-            $query = "SELECT u.nome, u.apelido, c.data
-            FROM marcacoes c
-            INNER JOIN utilizadores u ON c.id_paciente = u.id_util
-            WHERE c.id_medico = '$id_util'
-            ORDER BY c.data ASC";
+            $query = "SELECT 
+            p.nome AS nome,
+            p.apelido AS apelido,
+            c.data AS data
+            FROM consultas c
+            INNER JOIN utilizadores p ON c.id_paciente = p.id_util
+            WHERE c.id_medico = 1";  
         }
         
 

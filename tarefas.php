@@ -7,7 +7,44 @@
     <title>Visualizar e marcar tarefas</title>
 </head>
 <body>
- 
+<?php
+    require "db.php";
+    //adicionar e mostrar tarefas
+    session_start();
+    $id_tipo = $_SESSION["id_tipo"];
+    $id_util = $_SESSION["id_util"];
+    //Chamar todos os auxiliares com o seu id e nome
+    $query_auxiliares = "SELECT id_util, nome, apelido FROM utilizadores WHERE id_tipo LIKE 'AH%'";
+    $result_auxiliares = mysqli_query($conn, $query_auxiliares);
+
+
+    //tarefas atribuídas ao auxiliar logado
+    $query_tarefas = "SELECT t.resumo, t.data_lim, t.prioridade, u.nome, u.apelido, t.Estado FROM tarefas t JOIN utilizadores u ON t.id_responsavel = u.id_util WHERE t.id_responsavel = $id_util";
+
+    $result = mysqli_query($conn, $query_tarefas);
+
+    if (!$result) {
+        die("Erro na query: " . mysqli_error($conn));
+    }
+
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $descricao = $_POST["descricao"];
+        $id_auxiliar = $_POST["auxiliar"];
+        $prioridade = $_POST["prioridade"];
+        $data_limite = $_POST["data_limite"];
+        $query_Insert = "INSERT INTO `tarefas`(id_atribuidor, id_responsavel, resumo, data_lim, prioridade) VALUES ('$id_util', '$id_auxiliar', '$descricao', '$data_limite', '$prioridade')";
+
+        // Inserir a nova tarefa na base de dados
+        
+        if (mysqli_query($conn, $query_Insert)) { //inseridas as informações
+        } else {
+            echo "Erro ao atribuir tarefa: " . mysqli_error($conn);
+        }
+    }
+
+
+?>
     <!-- Barra de navegação -->
     <nav class="navbar">
         <div class="navbar-logo">
@@ -29,6 +66,7 @@
         </div>
  
         <!-- Formulário de nova tarefa -->
+        <?php if($id_tipo == 'EF') { ?>
         <div class="card">
             <h2>Nova Tarefa</h2>
  
@@ -44,9 +82,11 @@
                         <label for="auxiliar">Auxiliar Responsável</label>
                         <select id="auxiliar" name="auxiliar">
                             <option value="">-- Selecione --</option>
-                            <option value="aux1">Auxiliar 1</option>
-                            <option value="aux2">Auxiliar 2</option>
-                            <option value="aux3">Auxiliar 3</option>
+                            <?php
+                            while ($linha = mysqli_fetch_assoc($result_auxiliares)) {
+                                echo "<option value='" . $linha["id_util"] . "'>" . $linha["nome"] . " " . $linha["apelido"] . "</option>";
+                                }
+                            ?>
                         </select>
                     </div>
  
@@ -54,15 +94,15 @@
                         <label for="prioridade">Prioridade</label>
                         <select id="prioridade" name="prioridade">
                             <option value="">-- Selecione --</option>
-                            <option value="baixa">Baixa</option>
-                            <option value="media">Média</option>
-                            <option value="alta">Alta</option>
+                            <option value="B">Baixa</option>
+                            <option value="M">Média</option>
+                            <option value="A">Alta</option>
                         </select>
                     </div>
  
                     <div class="form-group">
                         <label for="data_limite">Data Limite</label>
-                        <input type="date" id="data_limite" name="data_limite">
+                        <input type="datetime-local" id="data_limite" name="data_limite">
                     </div>
                 </div>
  
@@ -72,8 +112,12 @@
  
             </form>
         </div>
- 
+        <?php } ?>
         <!-- Tabela de tarefas atribuídas -->
+         <?php
+        // Mostrar as tarefas atribuídas ao auxiliar logado
+        if($id_tipo[0] == "A"){
+        ?>
         <div class="card">
             <h2>Tarefas Atribuídas</h2>
  
@@ -81,38 +125,26 @@
                 <thead>
                     <tr>
                         <th>Descrição</th>
-                        <th>Auxiliar</th>
+                        <th>Responsável</th>
                         <th>Prioridade</th>
                         <th>Data Limite</th>
                         <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Limpar e preparar a sala 3</td>
-                        <td>Auxiliar 1</td>
-                        <td><span class="prioridade alta">Alta</span></td>
-                        <td>10/06/2025</td>
-                        <td><span class="estado pendente">Pendente</span></td>
-                    </tr>
-                    <tr>
-                        <td>Repor material de escritório</td>
-                        <td>Auxiliar 2</td>
-                        <td><span class="prioridade media">Média</span></td>
-                        <td>12/06/2025</td>
-                        <td><span class="estado em-curso">Em Curso</span></td>
-                    </tr>
-                    <tr>
-                        <td>Transportar equipamento para bloco B</td>
-                        <td>Auxiliar 3</td>
-                        <td><span class="prioridade baixa">Baixa</span></td>
-                        <td>15/06/2025</td>
-                        <td><span class="estado concluida">Concluída</span></td>
-                    </tr>
+                    <?php
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr><td>" . $row['resumo'] . "</td>";
+                            echo "<td>" . $row['data_lim'] . "</td>";
+                            echo "<td>" . $row['prioridade'] . "</td>";
+                            echo "<td>" . $row['nome'] . " " . $row['apelido'] . "</td>";
+                            echo "<td>" . $row['Estado'] . "</td></tr>";
+                            }
+                    ?>
                 </tbody>
             </table>
         </div>
- 
+        <?php } ?>
         <!-- Botão voltar -->
         <a href="main.php" class="btn-voltar">← Voltar ao início</a>
  
