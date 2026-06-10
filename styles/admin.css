@@ -361,3 +361,62 @@ table tbody tr:hover {
 .form-container {
     transition: all 0.3s ease;
 }
+
+
+
+.layout {
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    padding: 20px 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 14px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+    background: #3d5166;
+}
+
+
+table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+.acoes {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-editar, .btn-eliminar {
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.btn-editar {
+    background: #3498db;
+    color: white;
+}
+
+.btn-eliminar {
+    background: #e74c3c;
+    color: white;
+}

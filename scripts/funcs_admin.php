@@ -29,5 +29,20 @@
     }
 
 
+    function Get_Types($conn)
+    {
+        $sql = "SELECT id_tipo, descricao FROM tipo_util";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . $row['id_tipo'] . "'>" . $row['descricao'] . "</option>";
+            }
+        } 
+        else {
+            echo "<option value=''>Nenhum tipo disponível</option>";
+        }
+    }
+
 
 ?>
