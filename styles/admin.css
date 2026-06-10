@@ -1,103 +1,363 @@
+/* admin.css */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f4f6f9;
+    background-color: #f0f2f5;
     color: #333;
+    line-height: 1.6;
 }
 
+/* Header */
 header {
-    background: #1f4e79;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: white;
-    padding: 20px;
+    padding: 25px 20px;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* Container principal */
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 30px auto;
-    padding: 20px;
+    padding: 0 20px;
 }
 
+/* Cards */
 .card {
     background: white;
-    margin-bottom: 25px;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 .card h2 {
-    margin-bottom: 20px;
-    color: #1f4e79;
-}
-
-.actions {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-}
-
-.btn {
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    color: white;
+    margin-bottom: 25px;
+    color: #1e3c72;
+    font-size: 1.6rem;
     font-weight: 600;
-    transition: 0.3s;
+    border-left: 4px solid #2a5298;
+    padding-left: 15px;
 }
 
-.btn:hover {
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 15px;
+    border: 2px solid #e1e8ed;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: #fafbfc;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #2a5298;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #bdc3c7;
+}
+
+/* Botões */
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn-registar {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-registar:hover {
     transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
 }
 
-.add {
-    background: #28a745;
+.btn-registar:active {
+    transform: translateY(0);
 }
 
-.edit {
-    background: #ffc107;
-    color: #222;
-}
-
-.remove {
-    background: #dc3545;
-}
-
+/* Tabela */
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 10px;
+    overflow-x: auto;
+    display: block;
+}
+
+table thead {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
 }
 
 table th {
-    background: #1f4e79;
     color: white;
-    padding: 12px;
+    padding: 14px 12px;
     text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 table td {
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ecf0f1;
+    color: #555;
 }
 
-table tr:hover {
+table tbody tr {
+    transition: background 0.2s ease;
+}
+
+table tbody tr:hover {
     background: #f8f9fa;
+    transform: scale(1.01);
+}
+
+/* Scroll responsivo para tabela */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
 }
 
 @media (max-width: 768px) {
-    .actions {
-        flex-direction: column;
+    header h1 {
+        font-size: 1.5rem;
     }
-
-    .btn {
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .card h2 {
+        font-size: 1.3rem;
+    }
+    
+    .buttons {
+        justify-content: stretch;
+    }
+    
+    .btn-registar {
         width: 100%;
     }
+    
+    .form-group input,
+    .form-group select {
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 15px;
+    }
+    
+    table th,
+    table td {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Animações e melhorias visuais */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Placeholder styling */
+::placeholder {
+    color: #bdc3c7;
+    opacity: 1;
+}
+
+/* Estilo para inputs inválidos (opcional, para validação) */
+.form-group input:invalid:focus {
+    border-color: #e74c3c;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a5298;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1e3c72;
+}
+
+
+/* Estilos para o cabeçalho do card com botão toggle */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.card-header h2 {
+    margin-bottom: 0;
+    border-left: 4px solid #2a5298;
+    padding-left: 15px;
+}
+
+/* Botão toggle */
+.btn-toggle {
+    background: #f0f2f5;
+    border: 2px solid #e1e8ed;
+    border-radius: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1e3c72;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-toggle:hover {
+    background: #e1e8ed;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-toggle:active {
+    transform: translateY(0);
+}
+
+.toggle-icon {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.toggle-icon.rotated {
+    transform: rotate(180deg);
+}
+
+/* Container do formulário com animação */
+.form-container {
+    overflow: hidden;
+    max-height: none;
+    opacity: 1;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.form-container.collapsed {
+    max-height: 0 !important;
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    visibility: hidden;
+}
+
+/* Estado expandido (padrão) */
+.form-container:not(.collapsed) {
+    max-height: 2000px;
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* CSS para versão simplificada */
+.form-container {
+    transition: all 0.3s ease;
 }
