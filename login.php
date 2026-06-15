@@ -109,5 +109,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
  
+    <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const form        = document.queryselector("form");
+        const inputUtente = document.queryselector("input[name='num_utente']");
+        const inputPass   = document.queryselector("input[name='password']");
+        const btnRegisto  = document.queryselector(".btn-register");
+
+        function mostrarerro(input, mensagem) {
+            const anterior = input.parentElement.queryselector(".erro-campo");
+            if (anterior) anterior.remove();
+
+            input.classList.add("input-erro");
+
+            const span = document.createelement("span");
+            span.className   = "erro-campo";
+            span.textContent = mensagem;
+            input.insertAdjacentElement("afterend", span);
+        }
+
+        function limparerro(input) {
+            input.classList.remove("input-erro");
+            const span = input.parentElement.queryselector(".erro-campo");
+            if (span) span.remove();
+        }
+
+        [inputUtente, inputPass].forEach((input) => {
+            input?.addEventListener("input", () => limparerro(input));
+        });
+
+        form?.addEventListener("submit", (e) => {
+            let valido = true;
+
+        /* Número de utente: obrigatório e numérico */
+            const utente = inputUtente?.value.trim();
+            if (!utente) {
+                mostrarerro(inputUtente, "Introduza o número de utente.");
+                valido = false;
+            } else if (!/^\d+$/.test(utente)) {
+                mostrarerro(inputUtente, "O número de utente deve conter apenas dígitos.");
+                valido = false;
+            }
+
+            /* Password: obrigatória */
+            const pass = inputPass?.value;
+            if (!pass) {
+                mostrarerro(inputPass, "Introduza a password.");
+                valido = false;
+            }
+
+            if (!valido) {
+                e.preventdefault(); // não envia o formulário
+            }
+        });
+
+        if (btnRegisto && btnRegisto.tagName !== "A") {
+            btnRegisto.addEventListener("click", () => {
+                window.location.href = "register.php";
+            });
+        }
+
+    });
+
+    </script>
 </body>
 </html>

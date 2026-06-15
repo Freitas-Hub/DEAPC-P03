@@ -157,6 +157,175 @@
 
     </form>
     </div>
- 
+    <script>
+    
+    document.addEventListener("DOMContentLoaded", () => {
+
+    const form       = document.querySelector("form");
+    const btnLogin   = document.querySelector(".btn-login");   //Já tenho conta
+
+    const campos = {
+        nome:              document.querySelector("#nome"),
+        apelido:           document.querySelector("#apelido"),
+        email:             document.querySelector("#email"),
+        telefone:          document.querySelector("#telefone"),
+        num_utente:        document.querySelector("#num_utente"),
+        nif:               document.querySelector("#nif"),
+        cartao_cidadao:    document.querySelector("#cartao_cidadao"),
+        seguranca_social:  document.querySelector("#seguranca_social"),
+        genero:            document.querySelector("#genero"),
+        data_nascimento:   document.querySelector("#data_nascimento"),
+        password:          document.querySelector("#password"),
+        confirmar_password:document.querySelector("#confirmar_password"),
+    };
+
+    function mostrarErro(input, mensagem) {
+        const anterior = input.parentElement.querySelector(".erro-campo");
+        if (anterior) anterior.remove();
+
+        input.classList.add("input-erro");
+
+        const span = document.createElement("span");
+        span.className   = "erro-campo";
+        span.textContent = mensagem;
+        input.insertAdjacentElement("afterend", span);
+    }
+
+    function limparErro(input) {
+        input.classList.remove("input-erro");
+        const span = input.parentElement.querySelector(".erro-campo");
+        if (span) span.remove();
+    }
+
+    /* Limpar erro ao editar qualquer campo */
+    Object.values(campos).forEach((el) => {
+        el?.addEventListener("input",  () => limparErro(el));
+        el?.addEventListener("change", () => limparErro(el));
+    });
+
+    /* ── Regras de validação ── */
+    const regras = [
+        {
+            campo: "nome",
+            teste: (v) => v.trim().length >= 2,
+            msg:   "Introduza o primeiro nome (mínimo 2 caracteres).",
+        },
+        {
+            campo: "apelido",
+            teste: (v) => v.trim().length >= 2,
+            msg:   "Introduza o último nome (mínimo 2 caracteres).",
+        },
+        {
+            campo: "email",
+            // RFC 5322 simplificado
+            teste: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+            msg:   "Introduza um endereço de email válido.",
+        },
+        {
+            campo: "telefone",
+            teste: (v) => /^9\d{8}$/.test(v.trim()),
+            msg:   "O número de telefone deve ter 9 dígitos e começar por 9.",
+        },
+        {
+            campo: "num_utente",
+            teste: (v) => /^\d{9}$/.test(v.trim()),
+            msg:   "O número de utente deve ter exactamente 9 dígitos.",
+        },
+        {
+            campo: "nif",
+            teste: (v) => /^\d{9}$/.test(v.trim()),
+            msg:   "O NIF deve ter exactamente 9 dígitos.",
+        },
+        {
+            campo: "cartao_cidadao",
+            teste: (v) => /^\d{8}$/.test(v.trim()),
+            msg:   "O número do Cartão de Cidadão deve ter exactamente 8 dígitos.",
+        },
+        {
+            campo: "seguranca_social",
+            teste: (v) => /^\d{11}$/.test(v.trim()),
+            msg:   "O número da Segurança Social deve ter exactamente 11 dígitos.",
+        },
+        {
+            campo: "genero",
+            teste: (v) => v !== "",
+            msg:   "Selecione o género.",
+        },
+        {
+            campo: "data_nascimento",
+            teste: (v) => {
+                if (!v) return false;
+                const nascimento = new Date(v);
+                const hoje       = new Date();
+                // Deve ter pelo menos 1 ano e não ser no futuro
+                return nascimento < hoje && (hoje.getFullYear() - nascimento.getFullYear()) >= 1;
+            },
+            msg:   "Introduza uma data de nascimento válida.",
+        },
+        {
+            campo: "password",
+            teste: (v) => v.length >= 6,
+            msg:   "A password deve ter pelo menos 6 caracteres.",
+        },
+    ];
+
+    /* ─────────────────────────────────────────────────
+       UTE14 – Validação do formulário de criação de conta
+       Verifica todos os campos obrigatórios e formatos
+       antes de submeter; a verificação de duplicados
+       (nº utente, NIF, etc.) é feita pelo servidor.
+    ───────────────────────────────────────────────── */
+    form?.addEventListener("submit", (e) => {
+        let valido = true;
+
+        /* Validar cada campo pela sua regra */
+        regras.forEach(({ campo, teste, msg }) => {
+            const el = campos[campo];
+            if (!el) return;
+
+            if (!teste(el.value)) {
+                mostrarErro(el, msg);
+                valido = false;
+            }
+        });
+
+        /* Confirmação de password (comparação entre dois campos) */
+        const pass    = campos.password?.value;
+        const confirm = campos.confirmar_password?.value;
+
+        if (pass && confirm !== pass) {
+            mostrarErro(campos.confirmar_password, "As passwords não coincidem.");
+            valido = false;
+        } else if (pass && confirm === pass) {
+            limparErro(campos.confirmar_password);
+        }
+
+        if (!valido) {
+            e.preventDefault();
+
+            // Fazer scroll até ao primeiro erro visível
+            const primeiro = form.querySelector(".input-erro");
+            if (primeiro) {
+                primeiro.scrollIntoView({ behavior: "smooth", block: "center" });
+                primeiro.focus();
+            }
+        }
+    });
+
+    /* ─────────────────────────────────────────────────
+       UTE18 – "Já tenho conta" → login.php
+       O <a href="login.php"> já trata da navegação;
+       este listener garante o mesmo comportamento se
+       o elemento for um <button>.
+    ───────────────────────────────────────────────── */
+    if (btnLogin && btnLogin.tagName !== "A") {
+        btnLogin.addEventListener("click", () => {
+            window.location.href = "login.php";
+        });
+    }
+
+    });
+
+    </script>
 </body>
 </html>
