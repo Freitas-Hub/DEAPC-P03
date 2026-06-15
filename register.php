@@ -75,6 +75,21 @@
         </ul>
     </nav>
  
+    <div class="imagem-topo">
+        <div class="imagem-topo-logo">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo2">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo3">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo4">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+    </div>
+
     <div class="container">
         <h1>Criar Conta</h1>
         <p class="subtitulo">Preencha os dados para se registar como utente</p>
@@ -157,6 +172,7 @@
 
     </form>
     </div>
+
     <script>
     
     document.addEventListener("DOMContentLoaded", () => {
@@ -268,13 +284,7 @@
             msg:   "A password deve ter pelo menos 6 caracteres.",
         },
     ];
-
-    /* ─────────────────────────────────────────────────
-       UTE14 – Validação do formulário de criação de conta
-       Verifica todos os campos obrigatórios e formatos
-       antes de submeter; a verificação de duplicados
-       (nº utente, NIF, etc.) é feita pelo servidor.
-    ───────────────────────────────────────────────── */
+    
     form?.addEventListener("submit", (e) => {
         let valido = true;
 
@@ -312,12 +322,6 @@
         }
     });
 
-    /* ─────────────────────────────────────────────────
-       UTE18 – "Já tenho conta" → login.php
-       O <a href="login.php"> já trata da navegação;
-       este listener garante o mesmo comportamento se
-       o elemento for um <button>.
-    ───────────────────────────────────────────────── */
     if (btnLogin && btnLogin.tagName !== "A") {
         btnLogin.addEventListener("click", () => {
             window.location.href = "login.php";

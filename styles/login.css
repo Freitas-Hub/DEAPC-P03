@@ -3,8 +3,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
-    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,12 +27,12 @@
  
 .navbar-links li a {
     text-decoration: none;
-    color: #333;
+    color: #15335f;
     font-size: 14px;
 }
  
 .navbar-links li a:hover {
-    color: #4a90e2;
+    color: #15335f;
 }
  
  
@@ -44,14 +44,55 @@
  
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    background-color: #15335f;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding-top: 65px;
+    background-image: url("../images/hospital.png");
+    background-size: 500px;      /* cobre todo o ecrã */
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-attachment: fixed;
 }
- 
+
+.imagem-topo-logo{
+    position: fixed;
+    left: 80%;
+    top: 10%;
+    width: 10%;
+    height: auto;
+    z-index: -1;
+}
+
+.imagem-topo-logo2 {
+    position: fixed;
+    left: 60%;
+    top: 30%;
+    width: 10%;
+    height: auto;
+    z-index: -1;
+}
+
+.imagem-topo-logo3 {
+    position: fixed;
+    left: 20%;
+    top: 20%;
+    width: 20%;
+    height: auto;
+    z-index: -1;
+}
+
+.imagem-topo-logo4 {
+    position: fixed;
+    left: 1%;
+    top: 10%;
+    width: 10%;
+    height: auto;
+    z-index: -1;
+}
+
 /* Caixa central */
 .container {
     background-color: #ffffff;
@@ -66,7 +107,7 @@ h1 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 24px;
-    color: #333;
+    color: #15335f;
 }
  
 /* Cada campo do formulário */
@@ -78,7 +119,7 @@ h1 {
     display: block;
     margin-bottom: 6px;
     font-size: 14px;
-    color: #555;
+    color: #15335f;
 }
  
 .form-group input {
@@ -87,12 +128,12 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
-    color: #333;
+    color: #15335f;
 }
  
 .form-group input:focus {
     outline: none;
-    border-color: #4a90e2;
+    border-color: #15335f;
 }
  
 /* Botões */
@@ -105,7 +146,7 @@ h1 {
  
 .btn-login {
     padding: 10px;
-    background-color: #4a90e2;
+    background-color: #15335f;
     color: white;
     border: none;
     border-radius: 4px;
@@ -114,19 +155,19 @@ h1 {
 }
  
 .btn-login:hover {
-    background-color: #357abd;
+    background-color: #15335f;
 }
  
 .btn-register {
     padding: 10px;
     background-color: white;
-    color: #4a90e2;
-    border: 1px solid #4a90e2;
+    color: #15335f;
+    border: 1px solid #15335f;
     border-radius: 4px;
     font-size: 15px;
     cursor: pointer;
 }
  
 .btn-register:hover {
-    background-color: #f0f6ff;
+    background-color: #ffffff;
 }

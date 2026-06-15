@@ -86,6 +86,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
     </div>
  
+    <div class="imagem-topo">
+        <div class="imagem-topo-logo">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo2">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo3">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo4">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+    </div>
+
     <div class="container">
         <h1>Bem-vindo</h1>
  

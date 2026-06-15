@@ -52,10 +52,10 @@
             <img src="images/logo.png" alt="Logotipo">
         </div>
         <ul class="navbar-links">
-            <li><a href="historia.php">História</a></li>
-            <li><a href="socios.php">Sócios</a></li>
-            <li><a href="parcerias.php">Parcerias</a></li>
-            <li><a href="medicos.php">Médicos da Casa</a></li>
+            <li><a href="historia.php">A Nossa História</a></li>
+            <li><a href="socios.php">O nosso Ecossistema</a></li>
+            <li><a href="parcerias.php">As nossas Parcerias</a></li>
+            <li><a href="medicos.php">A nossa Equipa</a></li>
         </ul>
     </nav>
  
@@ -63,7 +63,7 @@
  
         <!-- Cabeçalho de boas-vindas -->
         <div class="boas-vindas">
-            <h1>Bem-vindo, <?php echo $_SESSION["nome"] . " " . $_SESSION["apelido"]; ?></h1> <!-- esta página sera universal a todo o tipo de utilizadores, desde médicos a utentes... -->
+            <h1>Bem-vindo/a, <?php echo $_SESSION["nome"] . " " . $_SESSION["apelido"]; ?></h1> <!-- esta página sera universal a todo o tipo de utilizadores, desde médicos a utentes... -->
         </div>
  
         <!-- Secção superior: próximas marcações + cartão do utente -->
@@ -71,12 +71,12 @@
  
             <!-- Próximas marcações -->
             <div class="card marcacoes">
-                <h2>Próximas Marcações</h2>
+                <h2>Próximas Marcações:</h2>
                 <table>
                     <tr>
-                        <td>03/05</td>
+                        <td>22/05</td>
                         <td>16:20</td>
-                        <td>Consulta de Medicina Geral</td>
+                        <td>Consulta de Dermatologia</td>
                     </tr>
                     <?php 
                         if (isset($result)) {
@@ -115,10 +115,11 @@
                     <img src="images/foto_perfil.jpg" alt="Foto do Utente">
                 </div>
                 <div class="utente-info">
-                    <p><strong>Utilizador Real</strong></p>
-                    <p>Idade: 45 anos</p>
+                    <p><strong>Sabrina Carpenter</strong></p>
+                    <p>Idade: 27 anos</p>
                     <p>Sexo: Feminino</p>
-                    <p>CC: 123456789</p>
+                    <p>CC: 300000006</p>
+                    <p>Nº Utente: 100000006</p>
                 </div>
             </div>
 
@@ -137,8 +138,8 @@
 
     <!-- Rodapé -->
     <footer class="rodape">
-        <span>Hospital Saúde</span>
-        <span>hospital@email.com | 351 773 355 11</span>
+        <span>Hospital Dos Cromos Exemplares</span>
+        <span>hospitaldoscromos1da@email.com | 351 773 355 11</span>
     </footer>
  
 </body>
