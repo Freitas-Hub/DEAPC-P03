@@ -44,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -70,6 +69,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             document.getElementById("contador").textContent = segundos;
         }, 1000);
     </script>
-
 </body>
 </html>

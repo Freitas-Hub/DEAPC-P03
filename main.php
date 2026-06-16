@@ -16,20 +16,7 @@
         $apelido = $_SESSION["apelido"];
         $id_tipo = $_SESSION["id_tipo"];
         $query = "";
-        if ($id_tipo == "PC")
-        {
-            $query = "SELECT 
-            u.nome AS nome,
-            u.apelido AS apelido,
-            tu.descricao AS especializacao,
-            c.data AS data
-            FROM consultas c
-            INNER JOIN utilizadores u ON c.id_medico = u.id_util
-            INNER JOIN tipo_util tu ON u.id_tipo = tu.id_tipo
-            WHERE c.id_paciente = $id_util
-            ORDER BY c.data ASC";
-        }
-        else if (!empty($id_tipo) && $id_tipo[0] == "M")
+        if (!empty($id_tipo) && $id_tipo[0] == "M")
         {
             $query = "SELECT 
             p.nome AS nome,
@@ -39,6 +26,20 @@
             INNER JOIN utilizadores p ON c.id_paciente = p.id_util
             WHERE c.id_medico = 1";
         }
+        else
+        {
+            $query = "SELECT 
+            u.nome AS nome,
+            u.apelido AS apelido,
+            tu.descricao AS descricao,
+            c.data AS data
+            FROM consultas c
+            INNER JOIN utilizadores u ON c.id_medico = u.id_util
+            INNER JOIN tipo_util tu ON u.id_tipo = tu.id_tipo
+            WHERE c.id_paciente = $id_util
+            ORDER BY c.data ASC";
+        }
+
 
         if ($query != "")
         {
@@ -79,6 +80,9 @@
                 <table id="tabela-marcacoes">
                     <?php 
                         if (isset($result)) {
+                            if ($result->num_rows == 0) {
+                                echo "<tr><td colspan='3' style='text-align: center;'>Não há consultas</td></tr>";
+                            }
                             if ($id_tipo[0] == "M") {
                                 while ($linha = $result->fetch_assoc()) {
                                     echo "<tr>";
@@ -88,7 +92,7 @@
                                     echo "</tr>";
                                 }
                             }
-                            else if($id_tipo[0] == "P") {
+                            else {
                                 while ($linha = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . date('d/m', strtotime($linha['data'])) . "</td>";
@@ -144,26 +148,24 @@
         // Botões comuns a todos os utilizadores autenticados
         const botoesComuns = [
             { label: "Informações Pessoais", href: "Info.php" },   // UTE01
+            { label: "Marcações",            href: "marcacoes.php"   }, // UTE05
+            { label: "Historial Médico",     href: "historico.php"   },
         ];
 
         // Botões exclusivos de utentes (PC / P*)
         const botoesUtente = [
-            { label: "Consultas",            href: "marcacoes.php"   }, // UTE05
             { label: "Prescrições Médicas",  href: "prescricoes.php" }, // UTE04
             { label: "Faturas",              href: "faturas.php"     }, // UTE06
-            { label: "Historial Médico",     href: "historico.php"   },
         ];
 
-        // Botões exclusivos de médicos (M*)
-        const botoesMedico = [
-            { label: "Consultas",  href: "marcacoes.php" }, // MD06
-            { label: "Utentes",    href: "utentes.php"   }, // MD01
+        const botoesEF = [
+            {label: "Tarefas", href: "tarefas.php"},
         ];
 
-        // Botões exclusivos de enfermeiros (ENF*)
-        const botoesEnfermeiro = [
-            { label: "Consultas e Exames", href: "marcacoes.php" }, // ENF04
+        const botoesAUX = [
+            {label: "Tarefas A Realizar", href: "tarefas.php"},
         ];
+
 
         function renderBotoes(lista) {
             lista.forEach(function(b) {
@@ -178,13 +180,17 @@
         // Renderiza os botões conforme o perfil do utilizador
         renderBotoes(botoesComuns);
 
-        if (idTipo && idTipo[0] === "M") {
-            renderBotoes(botoesMedico);
-        } else if (idTipo && idTipo.startsWith("EN")) {
-            renderBotoes(botoesEnfermeiro);
-        } else {
+        if (idTipo && idTipo === "PC") {
             // Utente (PC ou P*)
             renderBotoes(botoesUtente);
+        }
+        else if(idTipo[0] === "A")
+        {
+            renderBotoes(botoesAUX);
+        }
+        else if(idTipo === "EF")
+        {
+            renderBotoes(botoesEF);
         }
 
         // ---------------------------------------------------
