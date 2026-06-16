@@ -31,13 +31,35 @@
             <ul>
                 <li><a href="../admin.php">Início</a></li>
                 <li><a href="users.php">Utilizadores</a></li>
-                <li><a href="tipo_utilizadores.php">Tipos de Utilizadores</a></li>
+                <li><a href="tipo_users.php">Tipos de Utilizadores</a></li>
                 <li><a href="tarefas.php">Tarefas</a></li>
                 <li><a href="consultas.php">Consultas</a></li>
             </ul>
         </nav>
 
         <main class="container">
+
+            <section class="card">
+                <form method="POST" action="scripts/insert_user.php">
+                    <div class="form-row">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ID">ID</label>
+                            <input type="text" id="ID" name="ID" placeholder="ID Referência">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricao">Descrição</label>
+                            <input type="text" id="descricao" name="descricao" placeholder="Descrição da Referência">
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <button type="submit" class="btn-registar">Criar Conta</button>
+                    </div>
+                </form>
+            </section>
             <section class="card">
                 <div class="card-header">
                     <h2>LISTA DE TIPOS DE UTILIZADORES</h2>

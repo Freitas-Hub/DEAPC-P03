@@ -35,11 +35,26 @@
         <nav class="sidebar">
             <ul>
                 <li><a href="adm/users.php">Utilizadores</a></li>
-                <li><a href="#">Tipos de Utilizadores</a></li>
-                <li><a href="#">Tarefas</a></li>
-                <li><a href="#">Consultas</a></li>
+                <li><a href="adm/tipo_users.php">Tipos de Utilizadores</a></li>
+                <li><a href="adm/tarefas.php">Tarefas</a></li>
+                <li><a href="adm/consultas.php">Consultas</a></li>
             </ul>
         </nav>
+
+    <div class="imagem-topo">
+        <div class="imagem-topo-logo">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo2">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo3">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo4">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+    </div>
 
         <main class="container">
 
@@ -191,6 +206,35 @@ function toggleForm() {
         btn.lastChild.textContent = ' Recolher';
     }
 }
+
+// ... (o teu toggleForm() existente fica aqui, sem alterações)
+
+document.querySelector('form').addEventListener('submit', function(e) {
+    const campos = [
+        { name: 'tipo',              label: 'Tipo' },
+        { name: 'nome',              label: 'Nome' },
+        { name: 'apelido',           label: 'Apelido' },
+        { name: 'email',             label: 'Email' },
+        { name: 'telefone',          label: 'Número de Telefone' },
+        { name: 'num_utente',        label: 'Número de Utente' },
+        { name: 'nif',               label: 'NIF' },
+        { name: 'cartao_cidadao',    label: 'Número do Cartão de Cidadão' },
+        { name: 'seguranca_social',  label: 'Número da Segurança Social' },
+        { name: 'genero',            label: 'Género' },
+        { name: 'data_nascimento',   label: 'Data de Nascimento' },
+        { name: 'password',          label: 'Password' },
+        { name: 'confirmar_password',label: 'Confirmar Password' },
+    ];
+
+    const vazios = campos.filter(c => !this.elements[c.name]?.value.trim());
+
+    if (vazios.length > 0) {
+        e.preventDefault();
+        const lista = vazios.map(c => `• ${c.label}`).join('\n');
+        alert(`Deve preencher todos os campos.\n\nCampo(s) em falta:\n${lista}`);
+    }
+});
+
 </script>
 
 </body>
