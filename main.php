@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/main.css">
-    <title>O NOSSO P03!</title>
+    <title>PÁGINA PRINCIPAL</title>
 </head>
 <body>
     <?php
@@ -105,14 +105,14 @@
             <!-- Cartão do utente -->
             <div class="card cartao-utente">
                 <div class="utente-foto">
-                    <img src="images/foto_perfil.jpg" alt="Foto do Utente">
+                    <img src="images/Sabrina_Carpenter.jpg" alt="Foto do Utente">
                 </div>
                 <div class="utente-info">
-                    <p><strong><php> Sabrina </php></strong></p>
+                    <p><strong><php> Sabrina Carpenter</php></strong></p>
                     <p>Idade: 27 anos</p>
                     <p>Sexo: Feminino</p>
-                    <p>CC: 300000006</p>
-                    <p>Nº Utente: 100000006</p>
+                    <p>CC: 300000009</p>
+                    <p>Nº Utente: 100000009</p>
                 </div>
             </div>
 

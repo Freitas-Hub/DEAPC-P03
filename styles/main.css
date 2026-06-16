@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    background:linear-gradient(rgba(21,51,95,0.9), rgba(122,195,195,0.9));
     min-height: 100vh;
     padding-top: 65px;
     padding-bottom: 60px;
@@ -22,7 +22,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #f5f5f5;
     border-bottom: 1px solid #ddd;
     display: flex;
     align-items: center;
@@ -46,12 +46,12 @@ body {
 
 .navbar-links li a {
     text-decoration: none;
-    color: #333;
+    color: #15335f;
     font-size: 14px;
 }
 
 .navbar-links li a:hover {
-    color: #4a90e2;
+    color: #0ec5c5;
 }
 
 /* Página principal */
@@ -63,16 +63,16 @@ body {
 
 /* Boas-vindas */
 .boas-vindas {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
+    background-color: #7dd3d3;
+    border: 1px solid #0ec5c5;
     border-radius: 8px;
     padding: 16px 24px;
     margin-bottom: 20px;
 }
 
 .boas-vindas h1 {
-    font-size: 22px;
-    color: #333;
+    font-size: 30px;
+    color: #f5f5f5;
 }
 
 /* Secção superior */
@@ -84,8 +84,8 @@ body {
 
 /* Cards genéricos */
 .card {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border: 1px solid #0ec5c5;
     border-radius: 8px;
     padding: 20px;
 }
@@ -97,7 +97,7 @@ body {
 
 .marcacoes h2 {
     font-size: 15px;
-    color: #333;
+    color: #15335f;
     margin-bottom: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -107,11 +107,11 @@ body {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
-    color: #555;
+    color: #15335f;
 }
 
 .marcacoes table tr {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f5f5f5;
 }
 
 .marcacoes table td {
@@ -130,19 +130,19 @@ body {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: 2px solid #ddd;
+    border: 2px solid #0ec5c5;
     object-fit: cover;
 }
 
 .utente-info p {
     font-size: 13px;
-    color: #555;
+    color: #15335f;
     margin-bottom: 4px;
 }
 
 .utente-info strong {
     font-size: 14px;
-    color: #333;
+    color: #15335f;
 }
 
 /* Botões de navegação */
@@ -153,21 +153,21 @@ body {
 }
 
 .btn-nav {
-    background-color: #ffffff;
-    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
     border-radius: 8px;
     padding: 22px 10px;
     text-align: center;
     text-decoration: none;
-    color: #333;
+    color: #15335f;
     font-size: 14px;
     transition: background-color 0.2s, border-color 0.2s;
 }
 
 .btn-nav:hover {
     background-color: #e8f0fb;
-    border-color: #4a90e2;
-    color: #4a90e2;
+    border-color: #7ac3c3;
+    color: #15335f;
 }
 
 /* Rodapé */
@@ -176,13 +176,13 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #f5f5f5;
     border-top: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
     padding: 12px 30px;
     font-size: 13px;
-    color: #888;
+    color: #15335f;
 }
 
 /* Responsividade */

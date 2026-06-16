@@ -113,10 +113,10 @@
             <img src="images/logo.png" alt="Logotipo">
         </div>
         <ul class="navbar-links">
-            <li><a href="historia.php">História</a></li>
-            <li><a href="socios.php">Sócios</a></li>
-            <li><a href="parcerias.php">Parcerias</a></li>
-            <li><a href="medicos.php">Médicos da Casa</a></li>
+             <li><a href="historia.php">A Nossa História</a></li>
+            <li><a href="socios.php">O nosso Ecossistema</a></li>
+            <li><a href="parcerias.php">As nossas Parcerias</a></li>
+            <li><a href="medicos.php">A nossa Equipa</a></li>
         </ul>
     </nav>
  
@@ -127,10 +127,28 @@
             <h1>Informações Pessoais</h1>
         </div>
  
+    <div class="imagem-topo">
+        <div class="imagem-topo-logo">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo2">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo3">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo4">
+            <img src="images/nuvem.png" alt="Nuvem">
+        </div>
+        <div class="imagem-topo-logo5">
+            <img src="images/hospital.png" alt="Hospital">
+        </div>
+    </div>
+
         <!-- Cartão com foto e nome -->
         <div class="card perfil">
             <div class="perfil-foto">
-                <img src="images/foto_perfil.jpg" alt="Foto do Utilizador">
+                <img src="images/Sabrina_Carpenter.png" alt="Foto do Utilizador">
             </div>
             <div class="perfil-nome">
                 <h2><?php echo $nome . " " . $apelido ?></h2>
@@ -140,7 +158,7 @@
  
         <!-- Informações pessoais -->
         <div class="card">
-            <h3>Dados Pessoais</h3>
+            <h3>DADOS PESSOAIS</h3>
 
             <div class="info-grid">
                 <div class="info-item">

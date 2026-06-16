@@ -44,12 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
 
-        
-        
-        
         //registar inicio de sessão e guardar variaveis de sessão
         
-
 
         registarAcesso($id_util, $conn); //função dentro do db.php para registar o acesso do utilizador
 

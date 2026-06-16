@@ -7,15 +7,14 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #15335f;
+    background: linear-gradient(to bottom,rgba(21,51,95,0.9), rgba(122,195,195,0.9));
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
     padding-top: 80px;
     padding-bottom: 40px;
-    background-image:linear-gradient(to bottom,rgba(21,51,95,0.9), rgba(122,195,195,0.9));
-    background-size: 500px;      /* cobre todo o ecrã */
+    background-size: cover;      /* cobre todo o ecrã */
     background-repeat: no-repeat;
     background-position: bottom left;
     background-attachment: fixed;
@@ -57,7 +56,7 @@ body {
 }
 
 .navbar-links li a:hover {
-    color: #15335f;
+    color: #0ec5c5;
 }
 
 .imagem-topo{
@@ -99,6 +98,15 @@ body {
     left: 1%;
     top: 10%;
     width: 10%;
+    height: auto;
+    z-index: -1;
+}
+
+.imagem-topo-logo5 {
+    position: fixed;
+    left: 1%;
+    top: 50%;
+    width: 20%;
     height: auto;
     z-index: -1;
 }
