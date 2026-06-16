@@ -48,7 +48,7 @@
                     </button>
                     </div>  
                 <form method="POST" action="../scripts/insert_tipo_user.php">  
-                    <div class="form-row">
+                <div class="form-row">
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -97,6 +97,33 @@
         </main>
 
     </div>
+    <script>
+        function toggleForm() {
+            const container = document.getElementById('formContainer');
+            const icon = document.getElementById('toggleIcon');
+            const btn = document.getElementById('btnToggleForm');
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
 
+            if (isExpanded) {
+                container.style.maxHeight = container.scrollHeight + 'px';
+                requestAnimationFrame(() => {
+                    container.style.maxHeight = '0';
+                    container.style.opacity = '0';
+                });
+                icon.style.transform = 'rotate(180deg)';
+                btn.setAttribute('aria-expanded', 'false');
+                btn.querySelector('.ti').className = 'ti ti-chevron-down toggle-icon';
+                btn.lastChild.textContent = ' Expandir';
+            } else {
+                container.style.maxHeight = container.scrollHeight + 'px';
+                container.style.opacity = '1';
+                setTimeout(() => container.style.maxHeight = 'none', 400);
+                icon.style.transform = 'rotate(0deg)';
+                btn.setAttribute('aria-expanded', 'true');
+                btn.querySelector('.ti').className = 'ti ti-chevron-up toggle-icon';
+                btn.lastChild.textContent = ' Recolher';
+            }
+        }
+    </script>
 </body>
 </html>
