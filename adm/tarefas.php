@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarefas</title>
+    <title>TAREFAS</title>
     <link rel="stylesheet" href="../styles/admin.css">
 </head>
 <body>
@@ -22,25 +22,25 @@
     $result = $conn->query($sql);
 ?>
     <header>
-        <h1>Painel de Administração</h1>
+        <h1>PAINEL DE ADMINISTRAÇÃO</h1>
     </header>
 
     <div class="layout">
 
         <nav class="sidebar">
             <ul>
-                <li><a href="../admin.php">🏠 Início</a></li>
-                <li><a href="utilizadores.php">👥 Utilizadores</a></li>
-                <li><a href="tipo_utilizadores.php">🏷️ Tipos de Utilizadores</a></li>
-                <li><a href="tarefas.php">✅ Tarefas</a></li>
-                <li><a href="consultas.php">📋 Consultas</a></li>
+                <li><a href="../admin.php">Início</a></li>
+                <li><a href="utilizadores.php">Utilizadores</a></li>
+                <li><a href="tipo_utilizadores.php">Tipos de Utilizadores</a></li>
+                <li><a href="tarefas.php">Tarefas</a></li>
+                <li><a href="consultas.php">Consultas</a></li>
             </ul>
         </nav>
 
         <main class="container">
             <section class="card">
                 <div class="card-header">
-                    <h2>Lista de Tarefas</h2>
+                    <h2>LISTA DE TAREFAS</h2>
                 </div>
 
                 <table>

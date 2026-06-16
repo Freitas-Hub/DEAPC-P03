@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Administração</title>
+    <title>PAINEL DE ADMINISTRAÇÃO</title>
     <link rel="stylesheet" href="styles/admin.css">
 
 </head>
@@ -27,17 +27,17 @@
     }
 ?>
     <header>
-        <h1>Painel de Administração</h1>
+        <h1>PAINEL DE ADMINISTRADOR</h1>
     </header>
 
     <div class="layout">
 
         <nav class="sidebar">
             <ul>
-                <li><a href="adm/users.php">👥 Utilizadores</a></li>
-                <li><a href="#">🏷️ Tipos de Utilizadores</a></li>
-                <li><a href="#">✅ Tarefas</a></li>
-                <li><a href="#">📋 Consultas</a></li>
+                <li><a href="adm/users.php">Utilizadores</a></li>
+                <li><a href="#">Tipos de Utilizadores</a></li>
+                <li><a href="#">Tarefas</a></li>
+                <li><a href="#">Consultas</a></li>
             </ul>
         </nav>
 
@@ -45,7 +45,7 @@
 
         <section class="card">
             <div class="card-header">
-                <h2>Criação de Utilizadores</h2>
+                <h2>CRIAÇÃO DE UTILIZADORES</h2>
                 <button class="btn-toggle" id="btnToggleForm" onclick="toggleForm()" aria-expanded="true" aria-controls="formContainer">
                     <i class="ti ti-chevron-up toggle-icon" id="toggleIcon" aria-hidden="true"></i>
                     Recolher
