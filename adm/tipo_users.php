@@ -40,7 +40,14 @@
         <main class="container">
 
             <section class="card">
-                <form method="POST" action="scripts/insert_user.php">
+                <div class="card-header">
+                    <h2>CRIAÇÃO DE ID's REFERÊNCIA</h2>
+                    <button class="btn-toggle" id="btnToggleForm" onclick="toggleForm()" aria-expanded="true" aria-controls="formContainer">
+                        <i class="ti ti-chevron-up toggle-icon" id="toggleIcon" aria-hidden="true"></i>
+                        Recolher
+                    </button>
+                    </div>  
+                <form method="POST" action="../scripts/insert_tipo_user.php">  
                     <div class="form-row">
                     </div>
                     <div class="form-row">
@@ -56,7 +63,7 @@
                     </div>
 
                     <div class="buttons">
-                        <button type="submit" class="btn-registar">Criar Conta</button>
+                        <button type="submit" class="btn-registar">Criar ID</button>
                     </div>
                 </form>
             </section>
