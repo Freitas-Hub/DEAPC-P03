@@ -139,7 +139,7 @@
     <!-- Rodapé -->
     <footer class="rodape">
         <span>Hospital Dos Cromos Exemplares</span>
-        <span>hospitaldoscromos1da@email.com | 351 773 355 11</span>
+        <span>hospitaldoscromos1da@email.com | +351 773 355 11</span>
     </footer>
  
 </body>

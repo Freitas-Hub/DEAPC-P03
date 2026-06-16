@@ -13,9 +13,9 @@
             <img src="images/logo.png" alt="Logotipo">
         </div>
         <ul class="navbar-links">
-            <li><a href="historia.php">A nossa História</a></li>
-            <li><a href="socios.php">Os nossos Sócios</a></li>
-            <li><a href="parcerias.php">Parcerias establecidas</a></li>
+            <li><a href="historia.php">A Nossa História</a></li>
+            <li><a href="socios.php">O nosso Ecossistema</a></li>
+            <li><a href="parcerias.php">As nossas Parcerias</a></li>
             <li><a href="medicos.php">A nossa Equipa</a></li>
         </ul>
     </nav>
@@ -82,8 +82,8 @@
  
     <!-- Rodapé -->
     <footer class="rodape">
-        <span>Hospital dos Alunos Exemplares</span>
-        <span>hospital@email.com | +351 773 355 11</span>
+        <span>Hospital Dos Cromos Exemplares</span>
+        <span>hospitaldoscromos1da@email.com | +351 773 355 11</span>
     </footer>
 
     <script>

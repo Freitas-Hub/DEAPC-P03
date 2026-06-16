@@ -49,6 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         session_start();
         //registar inicio de sessão e guardar variaveis de sessão
+        
+        if (!isset($_SESSION["id_util"])) {
+            header("Location: login.php");
+            exit();
+        }
 
         registarAcesso($id, $conn); //função dentro do db.php para registar o acesso do utilizador
 
@@ -79,9 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <img src="images/logo.png" alt="Logotipo">
         </div>
         <ul class="navbar-links">
-            <li><a href="historia.php">A nossa História</a></li>
-            <li><a href="socios.php">Os nossos Sócios</a></li>
-            <li><a href="parcerias.php">Parcerias establecidas</a></li>
+            <li><a href="historia.php">A Nossa História</a></li>
+            <li><a href="socios.php">O nosso Ecossistema</a></li>
+            <li><a href="parcerias.php">As nossas Parcerias</a></li>
             <li><a href="medicos.php">A nossa Equipa</a></li>
         </ul>
     </div>
