@@ -31,7 +31,7 @@
             <ul>
                 <li><a href="../admin.php">Início</a></li>
                 <li><a href="utilizadores.php">Utilizadores</a></li>
-                <li><a href="tipo_utilizadores.php">Tipos de Utilizadores</a></li>
+                <li><a href="tipo_users.php">Tipos de Utilizadores</a></li>
                 <li><a href="tarefas.php">Tarefas</a></li>
                 <li><a href="consultas.php">Consultas</a></li>
             </ul>

@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $id_tipo = $user["id_tipo"];
         $nome = $user["nome"];
-        $id = $user["id_util"]; 
+        $id = $user["id_util"];   
         $apelido = $user["apelido"];
         echo "Teste:" . $id;
         if ($id_tipo == "ADM") // é administrador   
