@@ -6,6 +6,83 @@
     <link rel="stylesheet" href="styles/prescricoes.css">
     <title>Visualizar prescrições - Visão Utente</title> <!-- esta página é apenas para utentes, médicos e enfermeiros terão uma visão diferente -->
 </head>
+
+<script>
+    // Determina o estado de cada linha com base na data de validade
+    document.querySelectorAll(".tabela-prescricoes tbody tr").forEach(function(linha) {
+        const celulas = linha.querySelectorAll("td");
+        if (celulas.length < 6) return;
+
+        // Validade está na 6ª coluna (índice 5) — formato DD/MM/YYYY
+        const partes = celulas[5].textContent.trim().split("/");
+        const validade = new Date(partes[2], partes[1] - 1, partes[0]);
+        const hoje = new Date();
+        hoje.setHours(0, 0, 0, 0);
+
+        const spanEstado = linha.querySelector(".estado");
+        if (!spanEstado) return;
+
+        if (validade >= hoje) {
+            spanEstado.textContent = "Ativa";
+            spanEstado.className = "estado ativa";
+        } else {
+            spanEstado.textContent = "Expirada";
+            spanEstado.className = "estado expirada";
+        }
+    });
+
+    // Filtra as linhas conforme o botão clicado
+    function filtrarPrescricoes(filtro) {
+        document.querySelectorAll(".filtro").forEach(function(btn) {
+            btn.classList.remove("ativo");
+        });
+        event.target.classList.add("ativo");
+
+        document.querySelectorAll(".tabela-prescricoes tbody tr").forEach(function(linha) {
+            const estado = linha.querySelector(".estado");
+            if (!estado) return;
+
+            if (filtro === "todas") {
+                linha.style.display = "";
+            } else if (estado.classList.contains(filtro)) {
+                linha.style.display = "";
+            } else {
+                linha.style.display = "none";
+            }
+        });
+    }
+
+        document.querySelectorAll(".tabela-prescricoes tbody tr").forEach(function(linha) {
+        const celulas = linha.querySelectorAll("td");
+        if (celulas.length < 6) return;
+
+        const textoValidade = celulas[5].textContent.trim();
+        const partes = textoValidade.split("/");
+    
+        console.log("Validade lida:", textoValidade, "| Partes:", partes);
+
+        const validade = new Date(parseInt(partes[2]), parseInt(partes[1]) - 1, parseInt(partes[0]));
+    
+        const hoje = new Date();
+        hoje.setHours(0, 0, 0, 0);
+        validade.setHours(0, 0, 0, 0);
+
+        console.log("Data validade:", validade, "| Hoje:", hoje, "| Expirada:", validade < hoje);
+
+        const spanEstado = linha.querySelector(".estado");
+        if (!spanEstado) return;
+
+        if  (validade >= hoje) {
+            spanEstado.textContent = "Ativa";
+            spanEstado.className = "estado ativa";
+        } else {
+            spanEstado.textContent = "Expirada";
+            spanEstado.className = "estado expirada";
+        }
+    });
+
+</script>
+
 <body>
  
     <!-- Barra de navegação -->
@@ -28,30 +105,14 @@
             <h1>Prescrições Médicas</h1>
         </div>
  
-        <!-- ============================================================
-             VISÃO UTENTE
-             Mostra a lista de prescrições atribuídas ao utente.
-        ============================================================= -->
- 
-        <!-- TODO (FUTURO): Controlo de acesso por perfil
-             - Se o utilizador autenticado for MÉDICO:
-               → Ocultar esta secção (visao-utente)
-               → Mostrar a secção (visao-medico) comentada no fundo
-             - Se o utilizador autenticado for UTENTE:
-               → Mostrar esta secção (visao-utente)
-               → Manter a secção (visao-medico) oculta
-             Este controlo deverá ser feito via PHP com verificação
-             da variável de sessão $_SESSION['perfil']
-        -->
+    <div class="filtros">
+        <button class="filtro ativo" onclick="filtrarPrescricoes('todas')">Todas</button>
+        <button class="filtro" onclick="filtrarPrescricoes('ativa')">Ativas</button>
+        <button class="filtro" onclick="filtrarPrescricoes('expirada')">Expiradas</button>
+    </div>
  
         <div class="visao-utente">
  
-            <!-- Filtros -->
-            <div class="filtros">
-                <button class="filtro ativo">Todas</button>
-                <button class="filtro">Ativas</button>
-                <button class="filtro">Expiradas</button>
-            </div>
  
             <!-- Lista de prescrições -->
             <div class="card">
@@ -73,8 +134,8 @@
                             <td>500mg</td>
                             <td>3x por dia</td>
                             <td>Dr. João Silva</td>
-                            <td>01/05/2025</td>
-                            <td>01/06/2025</td>
+                            <td>01/05/2022</td>
+                            <td>01/07/2026</td>
                             <td><span class="estado ativa">Ativa</span></td>
                         </tr>
                         <tr>
@@ -82,8 +143,8 @@
                             <td>875mg</td>
                             <td>2x por dia</td>
                             <td>Dra. Ana Ferreira</td>
-                            <td>15/03/2025</td>
-                            <td>30/03/2025</td>
+                            <td>15/03/2023</td>
+                            <td>30/03/2023</td>
                             <td><span class="estado expirada">Expirada</span></td>
                         </tr>
                         <tr>
@@ -91,8 +152,8 @@
                             <td>400mg</td>
                             <td>1x por dia</td>
                             <td>Dr. Rui Santos</td>
-                            <td>10/05/2025</td>
-                            <td>10/08/2025</td>
+                            <td>10/05/2026</td>
+                            <td>10/08/2026</td>
                             <td><span class="estado ativa">Ativa</span></td>
                         </tr>
                     </tbody>

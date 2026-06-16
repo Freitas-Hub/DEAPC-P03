@@ -44,10 +44,16 @@
  
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #15335f, #7ac3c3);
+
+    background: linear-gradient( #15335f 0%, #7ac3c3 100% );
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     min-height: 100vh;
     padding-top: 65px;
 }
@@ -91,8 +97,8 @@ body {
 .imagem-topo-logo5 {
     position: fixed;
     left: 1%;
-    top: 90%;
-    width: 10%;
+    top: 50%;
+    width: 20%;
     height: auto;
     z-index: -1;
 }

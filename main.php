@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/main.css">    <title>O NOSSO P03!</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <title>O NOSSO P03!</title>
 </head>
 <body>
     <?php
         require "db.php";
         session_start();
+
         $id_util = $_SESSION["id_util"];
         $nome = $_SESSION["nome"];
         $apelido = $_SESSION["apelido"];
         $id_tipo = $_SESSION["id_tipo"];
         $query = "";
-        if ($id_tipo == "PC") // é paciente
+        if ($id_tipo == "PC")
         {
             $query = "SELECT 
             u.nome AS nome,
@@ -26,9 +28,8 @@
             INNER JOIN tipo_util tu ON u.id_tipo = tu.id_tipo
             WHERE c.id_paciente = $id_util
             ORDER BY c.data ASC";
-
         }
-        else if (!empty($id_tipo) && $id_tipo[0] == "M") // é médico
+        else if (!empty($id_tipo) && $id_tipo[0] == "M")
         {
             $query = "SELECT 
             p.nome AS nome,
@@ -36,16 +37,19 @@
             c.data AS data
             FROM consultas c
             INNER JOIN utilizadores p ON c.id_paciente = p.id_util
-            WHERE c.id_medico = 1";  
+            WHERE c.id_medico = 1";
         }
-        
 
         if ($query != "")
         {
             $result = $conn->query($query);
             echo $conn->error;
         }
+
+        // Passa o tipo de utilizador ao JS
+        $id_tipo_js = json_encode($id_tipo);
     ?>
+
     <!-- Barra de navegação -->
     <nav class="navbar">
         <div class="navbar-logo">
@@ -58,64 +62,53 @@
             <li><a href="medicos.php">A nossa Equipa</a></li>
         </ul>
     </nav>
- 
+
     <div class="page">
- 
+
         <!-- Cabeçalho de boas-vindas -->
         <div class="boas-vindas">
-            <h1>Bem-vindo/a, <?php echo $_SESSION["nome"] . " " . $_SESSION["apelido"]; ?></h1> <!-- esta página sera universal a todo o tipo de utilizadores, desde médicos a utentes... -->
+            <h1>Bem-vindo/a, <?php echo $_SESSION["nome"] . " " . $_SESSION["apelido"]; ?></h1>
         </div>
- 
+
         <!-- Secção superior: próximas marcações + cartão do utente -->
         <div class="secao-superior">
- 
+
             <!-- Próximas marcações -->
             <div class="card marcacoes">
                 <h2>Próximas Marcações:</h2>
-                <table>
-                    <tr>
-                        <td>22/05</td>
-                        <td>16:20</td>
-                        <td>Consulta de Dermatologia</td>
-                    </tr>
+                <table id="tabela-marcacoes">
                     <?php 
                         if (isset($result)) {
                             if ($id_tipo[0] == "M") {
-                                while ($linha = $result->fetch_assoc()) 
-                                {
-                                echo "<tr>";
-                                echo "<td>" . date('d/m', strtotime($linha['data'])) . "</td>";
-                                echo "<td>" . date('H:i', strtotime($linha['data'])) . "</td>";
-                                echo "<td>" . $linha['nome'] . " " . $linha['apelido'] . "</td>";
-                                echo "</tr>";
+                                while ($linha = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . date('d/m', strtotime($linha['data'])) . "</td>";
+                                    echo "<td>" . date('H:i', strtotime($linha['data'])) . "</td>";
+                                    echo "<td>" . $linha['nome'] . " " . $linha['apelido'] . "</td>";
+                                    echo "</tr>";
                                 }
                             }
                             else if($id_tipo[0] == "P") {
-                                while ($linha = $result->fetch_assoc()) 
-                                {
-                                    
+                                while ($linha = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . date('d/m', strtotime($linha['data'])) . "</td>";
                                     echo "<td>" . date('H:i', strtotime($linha['data'])) . "</td>";
                                     echo "<td>" . $linha['descricao'] . " - " . $linha['nome'] . " " . $linha['apelido'] . "</td>";
                                     echo "</tr>";
-
                                 }
                             }
-                                
                         }
-                        // função para chamar marcacoes da vista correta(paciente,médico,etc)
                     ?>
                 </table>
             </div>
- 
+
             <!-- Cartão do utente -->
             <div class="card cartao-utente">
                 <div class="utente-foto">
                     <img src="images/foto_perfil.jpg" alt="Foto do Utente">
                 </div>
                 <div class="utente-info">
-                    <p><strong>Sabrina Carpenter</strong></p>
+                    <p><strong><php> Sabrina </php></strong></p>
                     <p>Idade: 27 anos</p>
                     <p>Sexo: Feminino</p>
                     <p>CC: 300000006</p>
@@ -124,16 +117,12 @@
             </div>
 
         </div>
- 
-        <!-- Botões de navegação -->
-        <div class="secao-botoes">
-            <a href="marcacoes.php" class="btn-nav">Consultas</a>
-            <a href="Info.php" class="btn-nav">Informações Pessoais</a>
-            <a href="historico.php" class="btn-nav">Historial Médico</a>
-            <a href="prescricoes.php" class="btn-nav">Prescrições Médicas</a>
-            <a href="faturas.php" class="btn-nav">Faturas</a>
+
+        <!-- Botões de navegação (gerados dinamicamente por JS conforme o tipo de utilizador) -->
+        <div class="secao-botoes" id="secao-botoes">
+            <!-- Preenchido pelo JavaScript -->
         </div>
- 
+
     </div>
 
     <!-- Rodapé -->
@@ -141,6 +130,75 @@
         <span>Hospital Dos Cromos Exemplares</span>
         <span>hospitaldoscromos1da@email.com | +351 773 355 11</span>
     </footer>
- 
+
+    <script>
+        // Tipo de utilizador vindo do PHP
+        const idTipo = <?php echo $id_tipo_js; ?>;
+
+        // ---------------------------------------------------
+        // 1. BOTÕES DE NAVEGAÇÃO DINÂMICOS (Exercício 4)
+        //    Cada user story tem o seu botão conforme o perfil
+        // ---------------------------------------------------
+        const botoes = document.getElementById("secao-botoes");
+
+        // Botões comuns a todos os utilizadores autenticados
+        const botoesComuns = [
+            { label: "Informações Pessoais", href: "Info.php" },   // UTE01
+        ];
+
+        // Botões exclusivos de utentes (PC / P*)
+        const botoesUtente = [
+            { label: "Consultas",            href: "marcacoes.php"   }, // UTE05
+            { label: "Prescrições Médicas",  href: "prescricoes.php" }, // UTE04
+            { label: "Faturas",              href: "faturas.php"     }, // UTE06
+            { label: "Historial Médico",     href: "historico.php"   },
+        ];
+
+        // Botões exclusivos de médicos (M*)
+        const botoesMedico = [
+            { label: "Consultas",  href: "marcacoes.php" }, // MD06
+            { label: "Utentes",    href: "utentes.php"   }, // MD01
+        ];
+
+        // Botões exclusivos de enfermeiros (ENF*)
+        const botoesEnfermeiro = [
+            { label: "Consultas e Exames", href: "marcacoes.php" }, // ENF04
+        ];
+
+        function renderBotoes(lista) {
+            lista.forEach(function(b) {
+                const a = document.createElement("a");
+                a.href = b.href;
+                a.className = "btn-nav";
+                a.textContent = b.label;
+                botoes.appendChild(a);
+            });
+        }
+
+        // Renderiza os botões conforme o perfil do utilizador
+        renderBotoes(botoesComuns);
+
+        if (idTipo && idTipo[0] === "M") {
+            renderBotoes(botoesMedico);
+        } else if (idTipo && idTipo.startsWith("EN")) {
+            renderBotoes(botoesEnfermeiro);
+        } else {
+            // Utente (PC ou P*)
+            renderBotoes(botoesUtente);
+        }
+
+        // ---------------------------------------------------
+        // 2. DESTAQUE DA PRÓXIMA MARCAÇÃO (UX para UTE05/MD06)
+        //    Realça a primeira linha da tabela (mais próxima)
+        // ---------------------------------------------------
+        const tabela = document.getElementById("tabela-marcacoes");
+        if (tabela) {
+            const primeiraLinha = tabela.querySelector("tr");
+            if (primeiraLinha) {
+                primeiraLinha.classList.add("proxima-marcacao");
+            }
+        }
+    </script>
+
 </body>
 </html>

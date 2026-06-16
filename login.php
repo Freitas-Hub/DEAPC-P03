@@ -32,9 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $id_tipo = $user["id_tipo"];
         $nome = $user["nome"];
-        $id = $user["id_util"];   
+        $id_util = $user["id_util"];   
         $apelido = $user["apelido"];
-        echo "Teste:" . $id;
+        echo "Teste:" . $id_util;
         if ($id_tipo == "ADM") // é administrador   
         {
             registarAcesso($id, $conn);
@@ -49,18 +49,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         //registar inicio de sessão e guardar variaveis de sessão
         
-        if (!isset($_SESSION["id_util"])) {
-            header("Location: login.php");
-            exit();
-        }
 
-        registarAcesso($id, $conn); //função dentro do db.php para registar o acesso do utilizador
+
+        registarAcesso($id_util, $conn); //função dentro do db.php para registar o acesso do utilizador
 
         $_SESSION["num_utente"] = $num_utente;
         $_SESSION["nome"] = $nome;
         $_SESSION["apelido"] = $apelido;
         $_SESSION["id_tipo"] = $id_tipo;
-        $_SESSION["id_util"] = $id;
+        $_SESSION["id_util"] = $id_util;
+
+        if (!isset($_SESSION["id_util"])) {
+            header("Location: login.php");
+            exit();
+        }
         echo "Login bem-sucedido! Bem-vindo, $nome $apelido. $id_tipo";
         header("Location: main.php");
         exit();
