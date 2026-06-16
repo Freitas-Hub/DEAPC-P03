@@ -29,7 +29,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #f5f5f5;
     border-bottom: 1px solid #15335f;
     display: flex;
     align-items: center;
@@ -104,18 +104,18 @@ body {
 
 /* Caixa central */
 .container {
-    background-color: #ffffff;
+    background-color: #f5f5f5;
     padding: 40px;
     border-radius: 8px;
-    border: 1px solid #15335f;
+    border: 1px solid #0ec5c5;
     width: 100%;
     max-width: 480px;
 }
 
 h1 {
     text-align: center;
-    font-size: 24px;
-    color: #15335f;
+    font-size: 35px;
+    color: #0ec5c5;
     margin-bottom: 6px;
 }
 
@@ -142,7 +142,7 @@ h1 {
 .form-group select {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #0ec5c5;
     border-radius: 4px;
     font-size: 14px;
     color: #15335f;
@@ -176,7 +176,7 @@ h1 {
 .btn-registar {
     padding: 10px;
     background-color: #15335f;
-    color: white;
+    color: #f5f5f5;
     border: none;
     border-radius: 4px;
     font-size: 15px;
@@ -185,12 +185,12 @@ h1 {
 }
 
 .btn-registar:hover {
-    background-color: #15335f;
+    background-color: #7ac3c3;
 }
 
 .btn-login {
     padding: 10px;
-    background-color: white;
+    background-color: #f5f5f5;
     color: #15335f;
     border: 1px solid #15335f;
     border-radius: 4px;
@@ -202,5 +202,5 @@ h1 {
 }
 
 .btn-login:hover {
-    background-color: #ffffff;
+    background-color: #7ac3c3;
 }

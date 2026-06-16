@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    background-color: #15335f;
     min-height: 100vh;
     padding-top: 65px;
     padding-bottom: 60px;
@@ -22,8 +22,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
-    border-bottom: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #F5f5f5;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -46,12 +46,12 @@ body {
 
 .navbar-links li a {
     text-decoration: none;
-    color: #333;
+    color: #15335f;
     font-size: 14px;
 }
 
 .navbar-links li a:hover {
-    color: #4a90e2;
+    color: #15335f;
 }
 
 /* Página */
@@ -70,21 +70,22 @@ body {
 }
 
 .page-header h1 {
-    font-size: 22px;
-    color: #333;
+    font-size: 75px;
+    color: #8bdcdc;
 }
 
 .btn-marcar {
-    background-color: #4a90e2;
-    color: white;
+    background-color: #f5f5f5;
+    color: #15335f;
     text-decoration: none;
     padding: 10px 18px;
     border-radius: 4px;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .btn-marcar:hover {
-    background-color: #357abd;
+    background-color: #15335f;
 }
 
 /* Filtros */
@@ -96,29 +97,30 @@ body {
 
 .filtro {
     padding: 7px 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #498989;
     border-radius: 20px;
-    background-color: #fff;
+    background-color: #8bdcdc;
     font-size: 13px;
-    color: #555;
+    font-weight: bold;
+    color: #15335f;
     cursor: pointer;
 }
 
 .filtro:hover {
-    border-color: #4a90e2;
-    color: #4a90e2;
+    border-color: #15335f;
+    color: #15335f;
 }
 
 .filtro.ativo {
-    background-color: #4a90e2;
-    color: white;
-    border-color: #4a90e2;
+    background-color: #8bdcdc;
+    color: #15335f;
+    border-color: #498989;
 }
 
 /* Card da tabela */
 .card {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border: 1px solid #15335f;
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 20px;
@@ -132,21 +134,21 @@ body {
 }
 
 .tabela-consultas thead tr {
-    background-color: #f7f8fa;
-    border-bottom: 2px solid #ddd;
+    background-color: #8bdcdc;
+    border-bottom: 2px solid #498989;
 }
 
 .tabela-consultas th {
     padding: 12px 16px;
     text-align: left;
-    color: #555;
+    color: #15335f;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.4px;
 }
 
 .tabela-consultas tbody tr {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f5f5f5;
 }
 
 .tabela-consultas tbody tr:last-child {
@@ -155,39 +157,44 @@ body {
 
 .tabela-consultas td {
     padding: 12px 16px;
-    color: #444;
+    color: #15335f;
 }
 
 /* Linha de consulta passada */
 .tabela-consultas tr.passada td {
-    color: #aaa;
+    color: #15335f;
 }
 
 /* Linha de consulta futura */
 .tabela-consultas tr.futura td:first-child::before {
     content: "▸ ";
-    color: #4a90e2;
+    color: #f5f5f5;
 }
 
 /* Linha vazia */
 .tabela-consultas tr.vazia td {
     text-align: center;
-    color: #bbb;
+    color: #f5f5f5;
     font-style: italic;
     padding: 20px;
 }
 
 /* Hover nas linhas */
 .tabela-consultas tbody tr:not(.vazia):hover {
-    background-color: #f5f8ff;
+    background-color: #9be4e4;
 }
 
 /* Botão voltar */
 .btn-voltar {
     display: inline-block;
     text-decoration: none;
-    color: #4a90e2;
+    background-color: #F5f5f5;
+    color: #15335f;
     font-size: 14px;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    border-color: #F5f5f5;
 }
 
 .btn-voltar:hover {
@@ -200,13 +207,13 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #f5f5f5;
     border-top: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
     padding: 12px 30px;
     font-size: 13px;
-    color: #888;
+    color: #15335f;
 }
 
 /* Responsividade */

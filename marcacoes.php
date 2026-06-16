@@ -13,10 +13,10 @@
             <img src="images/logo.png" alt="Logotipo">
         </div>
         <ul class="navbar-links">
-            <li><a href="historia.php">História</a></li>
-            <li><a href="socios.php">Sócios</a></li>
-            <li><a href="parcerias.php">Parcerias</a></li>
-            <li><a href="medicos.php">Médicos da Casa</a></li>
+            <li><a href="historia.php">A nossa História</a></li>
+            <li><a href="socios.php">Os nossos Sócios</a></li>
+            <li><a href="parcerias.php">Parcerias establecidas</a></li>
+            <li><a href="medicos.php">A nossa Equipa</a></li>
         </ul>
     </nav>
  
@@ -24,7 +24,7 @@
  
         <!-- Cabeçalho da página -->
         <div class="page-header">
-            <h1>Marcações</h1>
+            <h1>MARCAÇÕES</h1>
             <a href="marcar_consulta.php" class="btn-marcar">+ Marcar Consulta</a>
         </div>
  
@@ -163,7 +163,6 @@
 
     aplicarFiltros();
     });
-
 
     </script>
 

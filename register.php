@@ -68,10 +68,10 @@
             <img src="images/logo.png" alt="Logotipo">
         </div>
         <ul class="navbar-links">
-            <li><a href="historia.php">História</a></li>
-            <li><a href="socios.php">Sócios</a></li>
-            <li><a href="parcerias.php">Parcerias</a></li>
-            <li><a href="medicos.php">Médicos da Casa</a></li>
+            <li><a href="historia.php">A nossa História</a></li>
+            <li><a href="socios.php">Os nossos Sócios</a></li>
+            <li><a href="parcerias.php">Parcerias establecidas</a></li>
+            <li><a href="medicos.php">A nossa Equipa</a></li>
         </ul>
     </nav>
  
@@ -91,7 +91,7 @@
     </div>
 
     <div class="container">
-        <h1>Criar Conta</h1>
+        <h1>CRIAR CONTA</h1>
         <p class="subtitulo">Preencha os dados para se registar como utente</p>
  
     <form method="POST">
