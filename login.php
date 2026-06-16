@@ -27,17 +27,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
-        
+        session_start();
         $user = $result->fetch_assoc();
 
         $id_tipo = $user["id_tipo"];
         $nome = $user["nome"];
         $id = $user["id_util"]; 
         $apelido = $user["apelido"];
-        echo "id_tipo: $id_tipo";
+        echo "Teste:" . $id;
         if ($id_tipo == "ADM") // é administrador   
         {
-            session_start();
             registarAcesso($id, $conn);
             $_SESSION["id_tipo"] = $id_tipo;
             header("Location: admin.php");
@@ -47,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         
         
-        session_start();
+        
         //registar inicio de sessão e guardar variaveis de sessão
         
         if (!isset($_SESSION["id_util"])) {
@@ -104,6 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="imagem-topo-logo4">
             <img src="images/nuvem.png" alt="Nuvem">
         </div>
+        <div class="imagem-topo-logo5">
+            <img src="images/hospital.png" alt="Hospital">
+        </div>
     </div>
 
     <div class="container">
@@ -112,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="post">
             <div class="form-group">
                 <label for="utente">Numero de Utente</label>
-                <input type="number" name="num_utente" placeholder="Numero de utente">
+                <input type="number" id="numutente" name="num_utente" placeholder="Numero de utente">
             </div>
  
             <div class="form-group">
@@ -132,18 +134,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     document.addEventListener("DOMContentLoaded", () => {
 
-        const form        = document.queryselector("form");
-        const inputUtente = document.queryselector("input[name='num_utente']");
-        const inputPass   = document.queryselector("input[name='password']");
-        const btnRegisto  = document.queryselector(".btn-register");
+        const form        = document.querySelector("form");
+        const inputUtente = document.querySelector("input[name='num_utente']");
+        const inputPass   = document.querySelector("input[name='password']");
+        const btnRegisto  = document.querySelector(".btn-register");
 
         function mostrarerro(input, mensagem) {
-            const anterior = input.parentElement.queryselector(".erro-campo");
+            const anterior = input.parentElement.querySelector(".erro-campo");
             if (anterior) anterior.remove();
 
             input.classList.add("input-erro");
 
-            const span = document.createelement("span");
+            const span = document.createElement("span");
             span.className   = "erro-campo";
             span.textContent = mensagem;
             input.insertAdjacentElement("afterend", span);
@@ -151,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         function limparerro(input) {
             input.classList.remove("input-erro");
-            const span = input.parentElement.queryselector(".erro-campo");
+            const span = input.parentElement.querySelector(".erro-campo");
             if (span) span.remove();
         }
 
@@ -168,7 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 mostrarerro(inputUtente, "Introduza o número de utente.");
                 valido = false;
             } else if (!/^\d+$/.test(utente)) {
-                mostrarerro(inputUtente, "O número de utente deve conter apenas dígitos.");
+                mostrarerro(inputUtente, "O número de utente deve conter apenas 9 dígitos.");
                 valido = false;
             }
 
@@ -180,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             if (!valido) {
-                e.preventdefault(); // não envia o formulário
+                e.preventDefault(); // não envia o formulário
             }
         });
 
@@ -190,6 +192,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             });
         }
 
+    });
+
+    document.getElementById("numutente").addEventListener("input", function () {
+        if (this.value.length > 9) {
+            this.value = this.value.slice(0, 9);
+        }
     });
 
     </script>

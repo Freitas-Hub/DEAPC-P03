@@ -44,17 +44,12 @@
  
 body {
     font-family: Arial, sans-serif;
-    background-color: #15335f;
+    background: linear-gradient(to bottom, #15335f, #7ac3c3);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding-top: 65px;
-    background-image: url("../images/hospital.png");
-    background-size: 500px;      /* cobre todo o ecrã */
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    background-attachment: fixed;
 }
 
 .imagem-topo-logo{
@@ -92,6 +87,16 @@ body {
     height: auto;
     z-index: -1;
 }
+
+.imagem-topo-logo5 {
+    position: fixed;
+    left: 1%;
+    top: 90%;
+    width: 10%;
+    height: auto;
+    z-index: -1;
+}
+
 
 /* Caixa central */
 .container {
