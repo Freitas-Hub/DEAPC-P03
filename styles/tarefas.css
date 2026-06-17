@@ -6,7 +6,7 @@
  
 body {
     font-family: Arial, sans-serif;
-    background-color: #15335f;
+    background:linear-gradient(rgba(21,51,95,0.9), rgba(122,195,195,0.9));
     min-height: 100vh;
     padding-top: 65px;
     padding-bottom: 60px;
@@ -66,14 +66,14 @@ body {
 }
  
 .page-header h1 {
-    font-size: 22px;
-    color: #333;
+    font-size: 75px;
+    color: #f5f5f5;
 }
  
 /* Cards */
 .card {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border: 1px solid #0ec5c5;
     border-radius: 8px;
     padding: 24px;
     margin-bottom: 20px;
@@ -81,7 +81,7 @@ body {
  
 .card h2 {
     font-size: 16px;
-    color: #333;
+    color: #15335f;
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
@@ -97,7 +97,7 @@ body {
     display: block;
     margin-bottom: 6px;
     font-size: 13px;
-    color: #555;
+    color: #15335f;
 }
  
 .form-group input,
@@ -108,7 +108,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
-    color: #333;
+    color: #15335f;
     background-color: #fff;
     font-family: Arial, sans-serif;
 }
@@ -117,7 +117,7 @@ body {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #4a90e2;
+    border-color: #15335f;
 }
  
 .form-group textarea {
@@ -138,8 +138,8 @@ body {
 }
  
 .btn-atribuir {
-    background-color: #4a90e2;
-    color: white;
+    background-color: #15335f;
+    color: #f5f5f5;
     border: none;
     padding: 10px 24px;
     border-radius: 4px;
@@ -148,7 +148,7 @@ body {
 }
  
 .btn-atribuir:hover {
-    background-color: #357abd;
+    background-color: #0ec5c5;
 }
  
 /* Tabela */
@@ -159,14 +159,14 @@ body {
 }
  
 .tabela-tarefas thead tr {
-    background-color: #f7f8fa;
+    background-color: #70c2c2;
     border-bottom: 2px solid #ddd;
 }
  
 .tabela-tarefas th {
     padding: 12px 14px;
     text-align: left;
-    color: #555;
+    color: #15335f;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.4px;
@@ -182,11 +182,11 @@ body {
  
 .tabela-tarefas td {
     padding: 12px 14px;
-    color: #444;
+    color: #15335f;
 }
  
 .tabela-tarefas tbody tr:hover {
-    background-color: #f5f8ff;
+    background-color: #f5f5f5;
 }
  
 /* Badges de prioridade */
@@ -198,18 +198,18 @@ body {
 }
  
 .prioridade.alta {
-    background-color: #fdecea;
-    color: #c0392b;
+    background-color: #f5f5f5;
+    color: #c14a3d;
 }
  
 .prioridade.media {
-    background-color: #fef6e4;
-    color: #d68910;
+    background-color: #f5f5f5;
+    color: #d89b38;
 }
  
 .prioridade.baixa {
-    background-color: #eafaf1;
-    color: #1e8449;
+    background-color: #f5f5f5;
+    color: #298d53;
 }
  
 /* Badges de estado */
@@ -220,18 +220,18 @@ body {
 }
  
 .estado.pendente {
-    background-color: #eaf0fb;
-    color: #2471a3;
+    background-color: rgba(101, 227, 227, 0.5);
+    color: #0ec5c5;
 }
  
 .estado.em-curso {
-    background-color: #fef6e4;
-    color: #d68910;
+    background-color: #f5f5f5;
+    color: #ccac2f;
 }
  
 .estado.concluida {
-    background-color: #eafaf1;
-    color: #1e8449;
+    background-color: #f5f5f5;
+    color: #298d53;
 }
  
 /* Pseudo-elemento: indicador visual nas linhas com prioridade alta */
@@ -254,8 +254,13 @@ body {
 .btn-voltar {
     display: inline-block;
     text-decoration: none;
-    color: #4a90e2;
+    background-color: #F5f5f5;
+    color: #15335f;
     font-size: 14px;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    border-color: #F5f5f5;
 }
  
 .btn-voltar:hover {
@@ -268,7 +273,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #f5f5f5;
     border-top: 1px solid #ddd;
     display: flex;
     justify-content: space-between;

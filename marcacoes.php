@@ -6,7 +6,33 @@
     <link rel="stylesheet" href="styles/marcacoes.css">
     <title>Ver & Marcar Consultas e Exames</title>
 </head>
+
 <body>
+
+<?php
+        session_start();
+        require "db.php";
+        $id_util = $_SESSION["id_util"];
+        $id_tipo = $_SESSION["id_tipo"];
+        $hoje = date('Y-m-d');
+        $resultado = "";
+        if($id_tipo[0] == "P")
+        {
+            $query = "SELECT 
+            u.nome AS nome,
+            u.apelido AS apelido,
+            tu.descricao AS descricao,
+            c.data AS data
+            FROM consultas c
+            INNER JOIN utilizadores u ON c.id_medico = u.id_util
+            INNER JOIN tipo_util tu ON u.id_tipo = tu.id_tipo
+            WHERE c.id_paciente = $id_util
+            ORDER BY c.data ASC";
+            $resultado = mysqli_query($conn, $query);
+        }
+
+        ?>
+
     <!-- Barra de navegação -->
     <nav class="navbar">
         <div class="navbar-logo">
@@ -47,48 +73,23 @@
                 <thead>
                     <tr>
                         <th>Data</th>
-                        <th>Hora</th>
                         <th>Médico</th>
                         <th>Especialidade</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Exemplo de consulta passada -->
-                    <tr class="passada">
-                        <td>03/05/2026</td>
-                        <td>16:20</td>
-                        <td>Dr. João Silva</td>
-                        <td>Medicina Geral</td>
-                    </tr>
-                    <!-- Exemplo de consulta futura -->
-                    <tr class="passada">
-                        <td>25/05/2026</td>
-                        <td>10:00</td>
-                        <td>Dra. Ana Ferreira</td>
-                        <td>Cardiologia</td>
-                    </tr>
-                    <tr class="futura">
-                        <td>10/07/2026</td>
-                        <td>14:30</td>
-                        <td>Dr. Rui Santos</td>
-                        <td>Ortopedia</td>
-                    </tr>
-                    <tr class="futura">
-                        <td>11/07/2026</td>
-                        <td>11:30</td>
-                        <td>Dr. Rui Santos</td>
-                        <td>Ortopedia</td>
-                    </tr>
-                    <tr class="futura">
-                        <td>22/10/2026</td>
-                        <td>16:45</td>
-                        <td>Dr. João silva</td>
-                        <td>Medicina Geral</td>
-                    </tr>
-                    <!-- Linha vazia como placeholder -->
-                    <tr class="vazia">
-                        <td colspan="4">Sem mais consultas registadas.</td>
-                    </tr>
+                
+                <?php
+                    while ($consulta = mysqli_fetch_assoc($resultado))
+                    {
+                    echo "<tr>";
+                    echo "<td>" . $consulta["data"] . "</td>";
+                    echo "<td>" . $consulta['nome'] . "</td>";
+                    echo "<td>" . $consulta['descricao'] . "</td>";
+                    echo "</tr>";
+                    }
+                ?>
+            
                 </tbody>
             </table>
         </div>
@@ -99,10 +100,10 @@
 
             <h2>Nova Consulta</h2>
 
-            <form id="formConsulta">
+            <form id="formConsulta" action="marcar_consulta.php" method="POST">
 
                 <label>Especialidade</label>
-                <select id="especialidade" required>
+                <select id="especialidade" name="especialidade" required>
                     <option value="">Selecione...</option>
                     <option>Cardiologia</option>
                     <option>Dermatologia</option>
@@ -116,10 +117,8 @@
                 </select>
 
                 <label>Data</label>
-                <input type="date" id="dataConsulta" required>
+                <input type="date" id="dataConsulta" name="data" required>
 
-                <label>Hora</label>
-                <input type="time" id="horaConsulta" required>
 
                 <button type="submit">Marcar</button>
 
@@ -235,83 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ===== NOVA CONSULTA =====
 
-    document
-    .getElementById("formConsulta")
-    .addEventListener("submit", function(e){
-
-        e.preventDefault();
-
-        const especialidade =
-            document.getElementById("especialidade").value;
-
-        const data =
-            document.getElementById("dataConsulta").value;
-
-        const hora =
-            document.getElementById("horaConsulta").value;
-
-        if (!especialidade) {
-            alert("Selecione uma especialidade.");
-            return;
-        }
-
-        if (!data) {
-            alert("Selecione uma data.");
-            return;
-        }
-
-        if (!hora) {
-            alert("Selecione uma hora.");
-            return;
-        }
-
-        const medico = "Dr. João Silva";
-
-        const d = new Date(data);
-
-        const dataFormatada =
-            String(d.getDate()).padStart(2,"0")
-            + "/"
-            + String(d.getMonth()+1).padStart(2,"0")
-            + "/"
-            + d.getFullYear();
-
-        const novaLinha =
-            document.createElement("tr");
-
-        novaLinha.classList.add("futura");
-
-        novaLinha.innerHTML = `
-            <td>${dataFormatada}</td>
-            <td>${hora}</td>
-            <td>${medico}</td>
-            <td>${especialidade}</td>
-        `;
-
-        const tbody =
-            document.querySelector(
-                ".tabela-consultas tbody"
-            );
-
-        const linhaVazia =
-            document.querySelector(".vazia");
-
-        tbody.insertBefore(
-            novaLinha,
-            linhaVazia
-        );
-
-        linhaVazia.style.display = "none";
-
-        popup.style.display = "none";
-
-        this.reset();
-
-        aplicarFiltros();
-
-        alert("Consulta marcada com sucesso!");
-    });
-
+    
     aplicarFiltros();
 
 });

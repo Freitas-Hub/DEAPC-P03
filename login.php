@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Teste:" . $id_util;
         if ($id_tipo == "ADM") // é administrador   
         {
-            registarAcesso($id, $conn);
+            registarAcesso($id_util, $conn);
             $_SESSION["id_tipo"] = $id_tipo;
             header("Location: admin.php");
             exit();
