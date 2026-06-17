@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/info.css">
-    <title>Document</title>
+    <title>Informações Pessoais</title>
 </head>
 <body>
  <?php
@@ -124,22 +124,10 @@
  
         <!-- Cabeçalho -->
         <div class="page-header">
-            <h1>Informações Pessoais</h1>
+            <h1>INFORMAÇÕES PESSOAIS</h1>
         </div>
  
     <div class="imagem-topo">
-        <div class="imagem-topo-logo">
-            <img src="images/nuvem.png" alt="Nuvem">
-        </div>
-        <div class="imagem-topo-logo2">
-            <img src="images/nuvem.png" alt="Nuvem">
-        </div>
-        <div class="imagem-topo-logo3">
-            <img src="images/nuvem.png" alt="Nuvem">
-        </div>
-        <div class="imagem-topo-logo4">
-            <img src="images/nuvem.png" alt="Nuvem">
-        </div>
         <div class="imagem-topo-logo5">
             <img src="images/hospital.png" alt="Hospital">
         </div>

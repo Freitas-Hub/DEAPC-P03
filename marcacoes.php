@@ -20,19 +20,25 @@
         </ul>
     </nav>
 
+    <div class="imagem-topo">
+        <div class="imagem-topo-logo5">
+            <img src="images/hospital.png" alt="Hospital">
+        </div>
+    </div>
+
     <div class="page">
  
         <!-- Cabeçalho da página -->
         <div class="page-header">
             <h1>MARCAÇÕES</h1>
-            <a href="marcar_consulta.php" class="btn-marcar">+ Marcar Consulta</a>
+            <button id="btnMarcar" class="btn-marcar">+ Marcar Consulta</button>
         </div>
  
         <!-- Filtros -->
         <div class="filtros">
-            <button class="filtro ativo">Todas</button>
-            <button class="filtro">Passadas</button>
-            <button class="filtro">Futuras</button>
+            <button class="filtro ativo" data-tempo="todas">Todas</button>
+            <button class="filtro" data-tempo="passadas">Passadas</button>
+            <button class="filtro" data-tempo="futuras">Futuras</button>
         </div>
  
         <!-- Tabela de consultas -->
@@ -42,30 +48,42 @@
                     <tr>
                         <th>Data</th>
                         <th>Hora</th>
-                        <th>Médico / Utente</th>
+                        <th>Médico</th>
                         <th>Especialidade</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Exemplo de consulta passada -->
                     <tr class="passada">
-                        <td>03/05/2025</td>
+                        <td>03/05/2026</td>
                         <td>16:20</td>
                         <td>Dr. João Silva</td>
                         <td>Medicina Geral</td>
                     </tr>
                     <!-- Exemplo de consulta futura -->
-                    <tr class="futura">
-                        <td>25/06/2025</td>
+                    <tr class="passada">
+                        <td>25/05/2026</td>
                         <td>10:00</td>
                         <td>Dra. Ana Ferreira</td>
                         <td>Cardiologia</td>
                     </tr>
                     <tr class="futura">
-                        <td>10/07/2025</td>
+                        <td>10/07/2026</td>
                         <td>14:30</td>
                         <td>Dr. Rui Santos</td>
                         <td>Ortopedia</td>
+                    </tr>
+                    <tr class="futura">
+                        <td>11/07/2026</td>
+                        <td>11:30</td>
+                        <td>Dr. Rui Santos</td>
+                        <td>Ortopedia</td>
+                    </tr>
+                    <tr class="futura">
+                        <td>22/10/2026</td>
+                        <td>16:45</td>
+                        <td>Dr. João silva</td>
+                        <td>Medicina Geral</td>
                     </tr>
                     <!-- Linha vazia como placeholder -->
                     <tr class="vazia">
@@ -74,7 +92,47 @@
                 </tbody>
             </table>
         </div>
- 
+
+
+    <div id="popupConsulta" class="popup">
+        <div class="popup-content">
+
+            <h2>Nova Consulta</h2>
+
+            <form id="formConsulta">
+
+                <label>Especialidade</label>
+                <select id="especialidade" required>
+                    <option value="">Selecione...</option>
+                    <option>Cardiologia</option>
+                    <option>Dermatologia</option>
+                    <option>Genicologia</option>
+                    <option>Medicina Geral</option>
+                    <option>Neurologia</option>
+                    <option>Obstetrícia</option>
+                    <option>Ortopedia</option>
+                    <option>Pediatria</option>
+                    <option>Urologia</option>
+                </select>
+
+                <label>Data</label>
+                <input type="date" id="dataConsulta" required>
+
+                <label>Hora</label>
+                <input type="time" id="horaConsulta" required>
+
+                <button type="submit">Marcar</button>
+
+            </form>
+
+        </div>
+
+        <span id="fecharPopup" class="fechar">&times;</span>
+
+    </div>
+
+
+
         <!-- Botão voltar -->
         <a href="main.php" class="btn-voltar">← Voltar ao início</a>
  
@@ -87,82 +145,176 @@
     </footer>
 
     <script>
+document.addEventListener("DOMContentLoaded", () => {
 
-    document.addEventListener("DOMContentLoaded", () => {
+    // ===== POPUP =====
 
-    const estado = {
-        tempo: "todas",      // "todas" | "passadas" | "futuras"
-        tipo: "todas",       // "todas" | "consultas" | "exames"
-        perfil: "todas",     // "todas" | "proprias" | "utentes"  (apenas médicos)
-    };
+    const popup = document.getElementById("popupConsulta");
+    const btnMarcar = document.getElementById("btnMarcar");
+    const fecharPopup = document.getElementById("fecharPopup");
 
-    const linhas       = document.querySelectorAll(".tabela-consultas tbody tr:not(.vazia)");
-    const linhavazia   = document.querySelector(".tabela-consultas tbody tr.vazia");
-    const btnsTempo    = document.querySelectorAll(".filtros .filtro[data-tempo]");
-    const btnsTipo     = document.querySelectorAll(".filtros .filtro[data-tipo]");
-    const btnsPerfil   = document.querySelectorAll(".filtros .filtro[data-perfil]");
+    btnMarcar.addEventListener("click", () => {
+        popup.style.display = "block";
+    });
+
+    fecharPopup.addEventListener("click", () => {
+        popup.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+        if (e.target === popup) {
+            popup.style.display = "none";
+        }
+    });
+
+    // ===== FILTROS =====
+
+    const btnsTempo = document.querySelectorAll("[data-tempo]");
 
     function aplicarFiltros() {
+
+        const filtroAtivo =
+            document.querySelector(".filtro.ativo").dataset.tempo;
+
+        const linhas =
+            document.querySelectorAll(
+                ".tabela-consultas tbody tr:not(.vazia)"
+            );
+
         let visiveis = 0;
 
-        linhas.forEach((tr) => {
-            const Passada  = tr.classList.contains("passada");
-            const Futura   = tr.classList.contains("futura");
-            const tipo      = tr.dataset.tipo   || "consulta";   // "consulta" | "exame"
-            const perfil    = tr.dataset.perfil || "propria";    // "propria"  | "utente"
+        linhas.forEach((linha) => {
 
-            let mostraTempo = true;
-            if (estado.tempo === "passadas" && !Passada)  mostraTempo = false;
-            if (estado.tempo === "futuras"  && !Futura)   mostraTempo = false;
+            const passada =
+                linha.classList.contains("passada");
 
-            let mostraTipo = true;
-            if (estado.tipo === "consultas" && tipo !== "consulta") mostraTipo = false;
-            if (estado.tipo === "exames"    && tipo !== "exame")    mostraTipo = false;
+            const futura =
+                linha.classList.contains("futura");
 
-            let mostraPerfil = true;
-            if (estado.perfil === "proprias" && perfil !== "propria") mostraPerfil = false;
-            if (estado.perfil === "utentes"  && perfil !== "utente")  mostraPerfil = false;
+            let mostrar = true;
 
-            const visivel = mostraTempo && mostraTipo && mostraPerfil;
-            tr.style.display = visivel ? "" : "none";
-            if (visivel) visiveis++;
+            if (filtroAtivo === "passadas") {
+                mostrar = passada;
+            }
+
+            if (filtroAtivo === "futuras") {
+                mostrar = futura;
+            }
+
+            linha.style.display =
+                mostrar ? "" : "none";
+
+            if (mostrar) {
+                visiveis++;
+            }
         });
 
-        if (linhavazia) {
-            linhavazia.style.display = visiveis === 0 ? "" : "none";
+        const linhaVazia =
+            document.querySelector(".vazia");
+
+        if (linhaVazia) {
+            linhaVazia.style.display =
+                visiveis === 0 ? "" : "none";
         }
     }
 
-    function ativarBotao(grupo, alvo) {
-        grupo.forEach((btn) => btn.classList.toggle("ativo", btn === alvo));
-    }
-
     btnsTempo.forEach((btn) => {
+
         btn.addEventListener("click", () => {
-            estado.tempo = btn.dataset.tempo;
-            ativarBotao(btnsTempo, btn);
+
+            btnsTempo.forEach((b) =>
+                b.classList.remove("ativo")
+            );
+
+            btn.classList.add("ativo");
+
             aplicarFiltros();
         });
+
     });
 
-    btnsTipo.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            estado.tipo = btn.dataset.tipo;
-            ativarBotao(btnsTipo, btn);
-            aplicarFiltros();
-        });
-    });
+    // ===== NOVA CONSULTA =====
 
-    btnsPerfil.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            estado.perfil = btn.dataset.perfil;
-            ativarBotao(btnsPerfil, btn);
-            aplicarFiltros();
-        });
+    document
+    .getElementById("formConsulta")
+    .addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        const especialidade =
+            document.getElementById("especialidade").value;
+
+        const data =
+            document.getElementById("dataConsulta").value;
+
+        const hora =
+            document.getElementById("horaConsulta").value;
+
+        if (!especialidade) {
+            alert("Selecione uma especialidade.");
+            return;
+        }
+
+        if (!data) {
+            alert("Selecione uma data.");
+            return;
+        }
+
+        if (!hora) {
+            alert("Selecione uma hora.");
+            return;
+        }
+
+        const medico = "Dr. João Silva";
+
+        const d = new Date(data);
+
+        const dataFormatada =
+            String(d.getDate()).padStart(2,"0")
+            + "/"
+            + String(d.getMonth()+1).padStart(2,"0")
+            + "/"
+            + d.getFullYear();
+
+        const novaLinha =
+            document.createElement("tr");
+
+        novaLinha.classList.add("futura");
+
+        novaLinha.innerHTML = `
+            <td>${dataFormatada}</td>
+            <td>${hora}</td>
+            <td>${medico}</td>
+            <td>${especialidade}</td>
+        `;
+
+        const tbody =
+            document.querySelector(
+                ".tabela-consultas tbody"
+            );
+
+        const linhaVazia =
+            document.querySelector(".vazia");
+
+        tbody.insertBefore(
+            novaLinha,
+            linhaVazia
+        );
+
+        linhaVazia.style.display = "none";
+
+        popup.style.display = "none";
+
+        this.reset();
+
+        aplicarFiltros();
+
+        alert("Consulta marcada com sucesso!");
     });
 
     aplicarFiltros();
-    });
+
+});
 
     </script>
 

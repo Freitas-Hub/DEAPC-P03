@@ -98,11 +98,17 @@
         </ul>
     </nav>
  
+    <div class="imagem-topo">
+        <div class="imagem-topo-logo5">
+            <img src="images/hospital.png" alt="Hospital">
+        </div>
+    </div>
+
     <div class="page">
  
         <!-- Cabeçalho -->
         <div class="page-header">
-            <h1>Prescrições Médicas</h1>
+            <h1>PRESCRIÇÕES MÉDICAS</h1>
         </div>
  
     <div class="filtros">
@@ -148,6 +154,33 @@
                             <td><span class="estado expirada">Expirada</span></td>
                         </tr>
                         <tr>
+                            <td>Clotrimazol</td>
+                            <td>200mg</td>
+                            <td>1x por dia</td>
+                            <td>Dra. Carlota Moreira</td>
+                            <td>14/01/2020</td>
+                            <td>23/04/2020</td>
+                            <td><span class="estado expirada">Expirada</span></td>
+                        </tr>
+                        <tr>
+                            <td>Adapaleno</td>
+                            <td>100mg</td>
+                            <td>2x por dia</td>
+                            <td>Dra. Carlota Moreira</td>
+                            <td>30/09/2019</td>
+                            <td>08/02/2020</td>
+                            <td><span class="estado expirada">Expirada</span></td>
+                        </tr>
+                        <tr>
+                            <td>Doxiciclina</td>
+                            <td>20 mg</td>
+                            <td>2x por dia</td>
+                            <td>Dra Ana Melo</td>
+                            <td>22/03/2019</td>
+                            <td>14/08/2019</td>
+                            <td><span class="estado expirada">Expirada</span></td>
+                        </tr>
+                        <tr>
                             <td>Ibuprofeno</td>
                             <td>400mg</td>
                             <td>1x por dia</td>
@@ -162,8 +195,6 @@
  
         </div>
         <!-- fim visao-utente -->
- 
- 
 
         <!-- Botão voltar -->
         <a href="main.php" class="btn-voltar">← Voltar ao início</a>
